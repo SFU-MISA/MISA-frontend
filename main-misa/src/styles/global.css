@@ -1,0 +1,103 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: var(--text-title);
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: var(--text-subtitle);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.page {
+  flex: 1;
+  padding-bottom: clamp(64px, 8vw, 120px);
+}
+
+/* The nav floats over the top of the page, so pages without a full-bleed
+   hero need to start below it. */
+.page-top {
+  padding-top: calc(var(--nav-offset) + 32px);
+}
+
+.section-title {
+  font-size: var(--text-title);
+  text-transform: uppercase;
+  margin-bottom: clamp(20px, 2.5vw, 36px);
+}
+
+/* Grey box standing in for a photo that hasn't been supplied yet */
+.placeholder {
+  display: grid;
+  place-items: center;
+  background: var(--color-placeholder-dark);
+  color: rgb(255 255 255 / 0.7);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Respect the OS "reduce motion" setting for every animation on the site */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
