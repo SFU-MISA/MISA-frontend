@@ -1,0 +1,91 @@
+/* About page, built from the FINAL "ABOUT" frame. */
+
+.about-intro {
+  max-width: 1326px;
+  margin: 0;
+}
+
+.about-photos {
+  margin-top: clamp(48px, 10vw, 143px);
+}
+
+/* ---------- Mission / Vision ---------- */
+.about-pillars {
+  display: grid;
+  gap: clamp(24px, 4vw, 58px);
+  margin-top: clamp(64px, 10vw, 143px);
+}
+
+.about-card {
+  padding: clamp(24px, 3.3vw, 48px) clamp(24px, 4.2vw, 60px);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.about-card .section-title {
+  margin-bottom: 0.4em;
+}
+
+.about-card p {
+  margin: 0;
+}
+
+/* ---------- Socials ---------- */
+.about-socials {
+  margin-top: clamp(64px, 11.5vw, 165px);
+}
+
+.about-socials__title {
+  color: var(--color-primary);
+}
+
+.about-socials__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(12px, 4.1vw, 60px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-socials__tile {
+  aspect-ratio: 1;
+  background: var(--color-placeholder);
+}
+
+/* ---------- Exec team ---------- */
+.exec-grid {
+  margin-top: clamp(64px, 7.8vw, 112px);
+}
+
+/* ---------- Join our team ---------- */
+.about-join {
+  margin-top: clamp(64px, 7.8vw, 112px);
+  /* Runs underneath the footer's rounded corners, as in Figma */
+  margin-bottom: calc(-1 * clamp(64px, 8vw, 120px) - 50px);
+  padding: clamp(40px, 6vw, 88px) 0 clamp(96px, 16vw, 230px);
+  background: var(--color-surface);
+}
+
+.about-join__list {
+  display: grid;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-join__empty {
+  margin: clamp(24px, 6vw, 88px) 0 0;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-card-title);
+  line-height: 1.2;
+}
+
+@media (max-width: 640px) {
+  .about-socials__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

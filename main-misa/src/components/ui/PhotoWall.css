@@ -1,0 +1,37 @@
+.photo-wall {
+  display: grid;
+  gap: clamp(12px, 1.7vw, 25px);
+  overflow: hidden;
+}
+
+.photo-wall__row {
+  --tile-w: clamp(160px, 27vw, 387px);
+  --tile-gap: clamp(12px, 2vw, 29px);
+  display: flex;
+  gap: var(--tile-gap);
+  width: max-content;
+  animation: photo-wall-slide 40s linear infinite;
+}
+
+.photo-wall__row--right {
+  animation-direction: reverse;
+  margin-left: calc(var(--tile-w) / -2);
+}
+
+.photo-wall:hover .photo-wall__row {
+  animation-play-state: paused;
+}
+
+.photo-wall__tile {
+  flex: 0 0 var(--tile-w);
+  aspect-ratio: 387 / 360;
+  object-fit: cover;
+  border-radius: clamp(12px, 1.4vw, 20px);
+}
+
+/* Each row holds its tiles twice, so moving by half its width loops cleanly */
+@keyframes photo-wall-slide {
+  to {
+    transform: translateX(calc(-50% - var(--tile-gap) / 2));
+  }
+}
