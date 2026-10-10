@@ -1,0 +1,16 @@
+.polaroid {
+  margin: 0;
+  aspect-ratio: 465 / 515;
+  padding: 3% 4.7% 0;
+  border-radius: clamp(8px, 1.15vw, 17px);
+  background: #fdfdff;
+  box-shadow: 0 8px 31px rgb(0 0 0 / 0.25);
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.polaroid__photo {
+  width: 100%;
+  aspect-ratio: 419 / 370;
+  object-fit: cover;
+  border-radius: clamp(3px, 0.4vw, 6px);
+}

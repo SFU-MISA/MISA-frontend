@@ -1,0 +1,255 @@
+/* Home page, built from the FINAL "HOME" frame (1440px wide). Sizes use vw
+   so the layout keeps the same proportions as it shrinks. */
+
+/* ---------- Hero ---------- */
+.home-hero {
+  height: clamp(480px, 87vw, 100svh);
+  background: var(--color-placeholder);
+  color: #000;
+  font-size: 1.25rem;
+}
+
+/* ---------- About MISA (blue arch over the bottom of the hero) ---------- */
+.home-about {
+  position: relative;
+  isolation: isolate;
+  margin-top: calc(-1 * clamp(140px, 30vw, 440px));
+  padding-top: clamp(72px, 18vw, 265px);
+  color: var(--color-text-on-primary);
+}
+
+.home-about::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: clamp(560px, 69vw, 995px);
+  z-index: -1;
+  border-radius: 50% 50% 0 0 / clamp(60px, 16vw, 230px)
+    clamp(60px, 16vw, 230px) 0 0;
+  background: linear-gradient(var(--color-primary) 75%, transparent);
+}
+
+.home-about__text p {
+  max-width: 1326px;
+  margin: 0;
+}
+
+.home-about__cta {
+  display: flex;
+  width: fit-content;
+  margin: clamp(20px, 2.5vw, 36px) 0 0 auto;
+}
+
+.home-about__photos {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: clamp(32px, 7.5vw, 113px);
+  padding: 0 var(--gutter);
+}
+
+.home-about__polaroid {
+  width: clamp(120px, 32vw, 465px);
+  margin-top: 3vw;
+}
+
+.home-about__polaroid + .home-about__polaroid {
+  margin-left: -4.3vw;
+}
+
+.home-about__polaroid--center {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+}
+
+.home-about__polaroid:hover {
+  transform: translateY(-8px) rotate(-1.5deg);
+}
+
+.home-about__star {
+  position: absolute;
+  left: -1%;
+  top: -2vw;
+  z-index: 2;
+  width: clamp(56px, 13.5vw, 194px);
+  pointer-events: none;
+}
+
+.home-about__byte-head {
+  position: absolute;
+  right: 2%;
+  top: -2vw;
+  z-index: 2;
+  width: clamp(44px, 9vw, 130px);
+  pointer-events: none;
+}
+
+/* ---------- Updates (horizontal scrolling cards) ---------- */
+.home-updates {
+  margin-top: clamp(64px, 9vw, 130px);
+}
+
+.home-updates__track {
+  display: flex;
+  gap: clamp(16px, 4.4vw, 63px);
+  margin: 0;
+  padding: 8px var(--gutter) 24px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: thin;
+}
+
+.home-updates__card {
+  flex: 0 0 clamp(280px, 54vw, 779px);
+  scroll-snap-align: start;
+  padding: clamp(20px, 2.3vw, 33px);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.home-updates__card:hover {
+  transform: translateY(-6px);
+}
+
+.home-updates__image {
+  width: 100%;
+  aspect-ratio: 709 / 299;
+  object-fit: cover;
+  border-radius: clamp(12px, 1.4vw, 20px);
+}
+
+.home-updates__card h3 {
+  margin: clamp(16px, 2.6vw, 38px) 0 12px;
+  font-size: var(--text-card-title);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.home-updates__card p {
+  margin: 0;
+}
+
+.home-updates__empty {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: clamp(280px, 51vw, 733px);
+  padding: clamp(24px, 3.5vw, 50px);
+  padding-bottom: 0;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.home-updates__empty > div {
+  align-self: center;
+  max-width: 711px;
+}
+
+.home-updates__empty h3 {
+  font-size: var(--text-subtitle);
+  text-transform: uppercase;
+}
+
+.home-updates__empty img {
+  width: clamp(160px, 34vw, 493px);
+}
+
+/* ---------- Meet Byte ---------- */
+.home-byte {
+  position: relative;
+  margin-top: clamp(48px, 7vw, 100px);
+  padding: clamp(28px, 3.3vw, 48px) clamp(24px, 4.2vw, 60px) 0;
+  border-radius: var(--radius-card);
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.home-byte p {
+  max-width: 1206px;
+  margin: 0;
+}
+
+.home-byte__art {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 2vw;
+  margin-top: 8px;
+}
+
+.home-byte__arrow {
+  width: clamp(110px, 21vw, 304px);
+  margin-bottom: clamp(40px, 8vw, 120px);
+  transition: transform 500ms var(--ease-out);
+}
+
+.home-byte__mascot {
+  width: clamp(130px, 22vw, 322px);
+  transition: transform 500ms var(--ease-out);
+}
+
+.home-byte:hover .home-byte__mascot {
+  transform: translateY(-10px);
+}
+
+.home-byte:hover .home-byte__arrow {
+  transform: translateX(10px);
+}
+
+/* ---------- Our Events ---------- */
+.home-events {
+  margin-top: clamp(64px, 9.6vw, 138px);
+  padding: clamp(40px, 6.3vw, 91px) 0 clamp(40px, 4.6vw, 66px);
+  background: var(--color-surface);
+}
+
+.home-events__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 3.9vw, 56px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-events__tile > * {
+  width: 100%;
+  aspect-ratio: 285 / 263;
+  object-fit: cover;
+  transition:
+    transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.home-events__tile:hover > * {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+
+.home-events__cta {
+  display: flex;
+  width: fit-content;
+  margin: clamp(24px, 4vw, 58px) 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .home-events__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-updates__empty {
+    flex-direction: column;
+    align-items: center;
+  }
+}
