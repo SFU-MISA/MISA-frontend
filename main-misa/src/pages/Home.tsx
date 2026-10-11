@@ -1,14 +1,19 @@
 import Button from '../components/ui/Button.tsx'
+import ByteArt from '../components/ui/ByteArt.tsx'
 import Polaroid from '../components/ui/Polaroid.tsx'
 import { UPDATES } from '../data/updates.ts'
 import { EVENTS_PREVIEW } from '../data/eventsPreview.ts'
 import teamPhoto from '../assets/photos/team.jpg'
 import star from '../assets/star.svg'
-import byteHead from '../assets/byte-head.svg'
-import byteLaptop from '../assets/byte-laptop.svg'
+import byteHead from '../assets/byte-head.svg?raw'
+import byteLaptop from '../assets/byte-laptop.svg?raw'
 import byteMegaphone from '../assets/byte-megaphone.svg'
 import dashedArrow from '../assets/dashed-arrow.svg'
 import './Home.css'
+
+// Figma layer names of Byte's eyes in each drawing
+const HEAD_EYES = ['Vector 422']
+const LAPTOP_EYES = ['Vector 305', 'Vector 306']
 
 export default function Home() {
   return (
@@ -40,7 +45,7 @@ export default function Home() {
             alt="The MISA team"
           />
           <Polaroid className="home-about__polaroid" />
-          <img className="home-about__byte-head" src={byteHead} alt="" />
+          <ByteArt className="home-about__byte-head" svg={byteHead} eyes={HEAD_EYES} />
         </div>
       </section>
 
@@ -90,7 +95,7 @@ export default function Home() {
           </p>
           <div className="home-byte__art" aria-hidden="true">
             <img className="home-byte__arrow" src={dashedArrow} alt="" />
-            <img className="home-byte__mascot" src={byteLaptop} alt="" />
+            <ByteArt className="home-byte__mascot" svg={byteLaptop} eyes={LAPTOP_EYES} />
           </div>
         </div>
       </section>

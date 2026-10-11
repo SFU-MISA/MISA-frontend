@@ -1,0 +1,10 @@
+.byte-art {
+  display: inline-block;
+  line-height: 0;
+}
+
+.byte-art svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}

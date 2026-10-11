@@ -1,8 +1,12 @@
 import { Link } from 'react-router'
+import ByteArt from '../ui/ByteArt.tsx'
 import { FOOTER_LINKS } from '../../config/links.ts'
 import logo from '../../assets/logo-white.svg'
-import byte from '../../assets/byte-footer.svg'
+import byte from '../../assets/byte-footer.svg?raw'
 import './Footer.css'
+
+// Figma layer name of Byte's eye (only one shows from this angle)
+const BYTE_EYES = ['Vector 158']
 
 export default function Footer() {
   return (
@@ -33,7 +37,7 @@ export default function Footer() {
         <p className="footer__legal">MISA © {new Date().getFullYear()}</p>
       </div>
 
-      <img className="footer__byte" src={byte} alt="" aria-hidden="true" />
+      <ByteArt className="footer__byte" svg={byte} eyes={BYTE_EYES} reach={6} />
     </footer>
   )
 }
