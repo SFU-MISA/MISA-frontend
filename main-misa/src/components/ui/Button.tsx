@@ -9,6 +9,8 @@ type ButtonProps = {
   /** "light" = white button for use on blue backgrounds */
   variant?: 'primary' | 'light'
   className?: string
+  /** File name to save as, for download links (e.g. an .ics calendar file) */
+  download?: string
 }
 
 /** Shared call-to-action button (Figma "Learn More Button"). Lifts on hover. */
@@ -17,13 +19,14 @@ export default function Button({
   to,
   variant = 'primary',
   className = '',
+  download,
 }: ButtonProps) {
   const classes =
     `button${variant === 'light' ? ' button--light' : ''} ${className}`.trim()
 
-  if (/^https?:\/\//.test(to)) {
+  if (/^(https?:\/\/|data:)/.test(to)) {
     return (
-      <a className={classes} href={to}>
+      <a className={classes} href={to} download={download}>
         {children}
       </a>
     )

@@ -1,20 +1,50 @@
-import { useState } from 'react'
 import Button from '../components/ui/Button.tsx'
-import PhotoWall from '../components/ui/PhotoWall.tsx'
+import PillarStairs from '../components/PillarStairs.tsx'
 import { TICKETING_PORTAL_URL } from '../config/links.ts'
-import { PILLAR_EVENTS } from '../data/pillarEvents.ts'
+import { PILLAR_EVENTS, type PillarEvent } from '../data/pillarEvents.ts'
+import { calendarFileUrl, formatDateTime, splitUpcoming } from '../utils/eventDates.ts'
+import calendarIcon from '../assets/calendar-add.svg?raw'
 import './Events.css'
 
-export default function Events() {
-  const [selected, setSelected] = useState(0)
-  const [testimonialIndex, setTestimonialIndex] = useState(0)
-  const event = PILLAR_EVENTS[selected]
-  const testimonial = event.testimonials[testimonialIndex]
+function EventCard({ event, action }: { event: PillarEvent; action: 'tickets' | 'calendar' }) {
+  return (
+    <article className="event-card" id={event.slug}>
+      <div className="event-card__text">
+        <h3>{event.name}</h3>
+        <p className="event-card__when">{formatDateTime(event)}</p>
+        <p>{event.description}</p>
+        {action === 'tickets' ? (
+          <Button to={TICKETING_PORTAL_URL} className="event-card__cta">
+            Buy Ticket
+          </Button>
+        ) : (
+          <Button
+            to={calendarFileUrl(event)}
+            download={`${event.slug}.ics`}
+            className="event-card__cta"
+          >
+            <span
+              className="event-card__icon"
+              aria-hidden="true"
+              dangerouslySetInnerHTML={{ __html: calendarIcon }}
+            />
+            Add to calendar
+          </Button>
+        )}
+      </div>
+      {event.image ? (
+        <img className="event-card__image" src={event.image} alt="" />
+      ) : (
+        <div className="event-card__image placeholder">Photo</div>
+      )}
+    </article>
+  )
+}
 
-  const selectEvent = (i: number) => {
-    setSelected(i)
-    setTestimonialIndex(0)
-  }
+export default function Events() {
+  const { upcoming, future } = splitUpcoming(PILLAR_EVENTS)
+  const linkedSlugs = (upcoming ? [upcoming, ...future] : []).map((event) => event.slug)
+  const restingStep = upcoming ? PILLAR_EVENTS.indexOf(upcoming) : PILLAR_EVENTS.length - 1
 
   return (
     <>
@@ -26,72 +56,36 @@ export default function Events() {
         <div className="container">
           <h1 className="section-title">Pillar Events</h1>
         </div>
-        <ul className="events-pillars__track">
-          {PILLAR_EVENTS.map((pillar, i) => (
-            <li key={pillar.name}>
-              <button
-                type="button"
-                className={`events-pillars__card${i === selected ? ' is-selected' : ''}`}
-                aria-pressed={i === selected}
-                onClick={() => selectEvent(i)}
-              >
-                {pillar.name}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <PillarStairs
+          events={PILLAR_EVENTS}
+          linkedSlugs={linkedSlugs}
+          restingStep={restingStep}
+        />
       </section>
 
-      <section className="container events-detail" aria-live="polite">
-        <h2 className="section-title">{event.name}</h2>
-        <div className="events-card">
-          <h3>What is it?</h3>
-          <p>{event.description}</p>
+      <section className="event-folder event-folder--upcoming">
+        <h2 className="event-folder__tab section-title">Upcoming Event</h2>
+        <div className="event-folder__panel">
+          {upcoming ? (
+            <EventCard event={upcoming} action="tickets" />
+          ) : (
+            <p className="event-folder__empty">
+              No upcoming events right now. Check back another time!
+            </p>
+          )}
         </div>
       </section>
 
-      <div className="events-photos">
-        <PhotoWall photos={event.photos} />
-      </div>
-
-      {testimonial && (
-        <section className="container events-testimonials">
-          <h2 className="section-title">Testimonials</h2>
-          <figure className="events-card">
-            <h3>{testimonial.name}</h3>
-            <blockquote>{testimonial.quote}</blockquote>
-          </figure>
-          {event.testimonials.length > 1 && (
-            <div className="events-testimonials__dots">
-              {event.testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  className={i === testimonialIndex ? 'is-active' : ''}
-                  aria-label={`Show testimonial ${i + 1}`}
-                  aria-current={i === testimonialIndex}
-                  onClick={() => setTestimonialIndex(i)}
-                />
-              ))}
-            </div>
-          )}
+      {future.length > 0 && (
+        <section className="event-folder event-folder--future">
+          <h2 className="event-folder__tab section-title">Future Events</h2>
+          <div className="event-folder__panel">
+            {future.map((event) => (
+              <EventCard key={event.slug} event={event} action="calendar" />
+            ))}
+          </div>
         </section>
       )}
-
-      <section className="events-signup">
-        <div className="container">
-          <h2 className="section-title">Sign Up</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-          <Button to={TICKETING_PORTAL_URL} className="events-signup__cta">
-            Get Tickets
-          </Button>
-        </div>
-      </section>
     </>
   )
 }

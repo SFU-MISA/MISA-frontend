@@ -1,0 +1,91 @@
+/* Pillar events staircase (Figma "Events Page" 305:394) */
+.stairs {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.stairs a {
+  outline: none;
+}
+
+.stairs__edge {
+  fill: none;
+  stroke: var(--color-lavender);
+  stroke-width: 2;
+}
+
+.stairs__top {
+  fill: var(--color-surface);
+  stroke: var(--color-lavender);
+  transition: fill var(--duration) var(--ease-out);
+}
+
+.stairs__face {
+  fill: var(--color-lavender);
+  transition: fill var(--duration) var(--ease-out);
+}
+
+.stairs__name {
+  font-size: 50px;
+  fill: var(--color-text);
+  transition: fill var(--duration) var(--ease-out);
+}
+
+.stairs__date {
+  font-size: 44px;
+  fill: var(--color-text);
+}
+
+/* The step Byte is heading to lights up */
+.stairs__step.is-active .stairs__face {
+  fill: var(--color-primary);
+}
+
+.stairs__step.is-active .stairs__name {
+  fill: var(--color-text-on-primary);
+}
+
+.stairs__step.is-active .stairs__top {
+  fill: var(--color-lavender);
+}
+
+.stairs a .stairs__step {
+  cursor: pointer;
+}
+
+.stairs a:focus-visible .stairs__face {
+  stroke: var(--color-sky);
+  stroke-width: 8;
+}
+
+.stairs__flag rect {
+  fill: var(--color-placeholder);
+}
+
+.stairs__flag-cloth {
+  fill: var(--color-primary);
+  transform-box: fill-box;
+  transform-origin: right center;
+  animation: stairs-flag-wave 2.4s ease-in-out infinite;
+}
+
+@keyframes stairs-flag-wave {
+  0%,
+  100% {
+    transform: translate(-85px, 9px) skewY(0deg);
+  }
+
+  50% {
+    transform: translate(-85px, 9px) skewY(-6deg) scaleX(0.94);
+  }
+}
+
+/* Byte hops from step to step */
+.stairs__byte {
+  transform-box: view-box;
+  transition: transform 260ms var(--ease-out);
+}

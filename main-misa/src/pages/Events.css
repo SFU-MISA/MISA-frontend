@@ -1,4 +1,4 @@
-/* Events page, built from the FINAL "EVENTS" frame. */
+/* Events page, built from the newest Figma "Events Page" frame (305:394). */
 
 .events-hero {
   height: clamp(420px, 71vw, 100svh);
@@ -7,137 +7,127 @@
   font-size: 1.25rem;
 }
 
-/* ---------- Pillar events (selectable cards) ---------- */
+/* ---------- Pillar events staircase ---------- */
 .events-pillars {
   margin-top: clamp(48px, 6.6vw, 95px);
+  overflow: hidden;
 }
 
-.events-pillars__track {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 1.8vw, 26px);
+.events-pillars .stairs {
+  margin-top: clamp(-120px, -6vw, -24px);
+}
+
+/* ---------- Upcoming / future folders ---------- */
+.event-folder {
+  --folder-bg: var(--color-surface);
+  --tab-overlap: clamp(40px, 5.8vw, 84px);
+  position: relative;
+  margin-top: clamp(48px, 6vw, 88px);
+}
+
+.event-folder--future {
+  --folder-bg: var(--color-lavender);
+  /* Tucks over the bottom of the folder above, like stacked file folders */
+  margin-top: calc(-1 * var(--tab-overlap));
+}
+
+.event-folder__tab {
+  display: inline-block;
   margin: 0;
-  /* Room for the selected card to grow and for shadows */
-  padding: 24px var(--gutter) 40px;
-  list-style: none;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  scroll-padding-inline: var(--gutter);
-  scrollbar-width: thin;
+  padding: clamp(10px, 1.25vw, 18px) clamp(20px, 3.9vw, 56px) var(--tab-overlap);
+  border-radius: 45px 45px 0 0;
+  background: var(--folder-bg);
+  font-size: clamp(1.75rem, 4.4vw, 4rem);
 }
 
-.events-pillars__track li {
-  scroll-snap-align: start;
+.event-folder__panel {
+  display: grid;
+  gap: clamp(56px, 6vw, 88px);
+  margin-top: calc(-1 * var(--tab-overlap));
+  padding: clamp(32px, 6vw, 87px) clamp(20px, 6.4vw, 92px) calc(clamp(32px, 6vw, 87px) + var(--tab-overlap));
+  border-radius: 0 45px 45px 45px;
+  background: var(--folder-bg);
+  box-shadow: 4px 6px 12px rgb(15 26 58 / 0.12);
 }
 
-.events-pillars__card {
-  width: clamp(180px, 25vw, 360px);
-  aspect-ratio: 359 / 468;
-  padding: 16px;
-  border: 0;
-  border-radius: var(--radius-card);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-card);
-  color: var(--color-text);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(1.125rem, 2.1vw, 1.875rem);
-  line-height: 1.2;
-  cursor: pointer;
-  transition:
-    width var(--duration) var(--ease-out),
-    transform var(--duration) var(--ease-out),
-    background-color var(--duration) var(--ease-out),
-    color var(--duration) var(--ease-out);
-}
-
-.events-pillars__card:hover {
-  transform: translateY(-6px);
-}
-
-/* The selected event is the larger card in the Figma */
-.events-pillars__card.is-selected {
-  width: clamp(200px, 27.5vw, 396px);
-  background: var(--color-primary);
-  color: var(--color-text-on-primary);
-}
-
-.events-pillars__card:focus-visible {
-  outline: 3px solid var(--color-sky);
-  outline-offset: 4px;
-}
-
-/* ---------- Shared card ---------- */
-.events-card {
-  margin: 0;
-  padding: clamp(24px, 4.7vw, 68px) clamp(24px, 4.2vw, 60px);
-  border-radius: var(--radius-card);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-card);
-}
-
-.events-card h3 {
-  margin-bottom: 0.5em;
-  font-size: clamp(1.5rem, 3.5vw, 3.125rem);
-}
-
-.events-card p,
-.events-card blockquote {
-  margin: 0;
-}
-
-/* ---------- Selected event details ---------- */
-.events-detail {
-  margin-top: clamp(40px, 5vw, 72px);
-}
-
-.events-photos {
-  margin-top: clamp(48px, 5.8vw, 85px);
-}
-
-/* ---------- Testimonials ---------- */
-.events-testimonials {
-  margin-top: clamp(64px, 6vw, 85px);
-}
-
-.events-testimonials__dots {
-  display: flex;
-  justify-content: center;
-  gap: 13px;
-  margin-top: clamp(24px, 3.3vw, 48px);
-}
-
-.events-testimonials__dots button {
-  width: 16px;
-  height: 16px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: var(--color-placeholder);
-  cursor: pointer;
-  transition: background-color var(--duration-fast) ease;
-}
-
-.events-testimonials__dots button.is-active {
-  background: var(--color-primary);
-}
-
-/* ---------- Sign up ---------- */
-.events-signup {
-  margin-top: clamp(64px, 7vw, 100px);
-  /* Runs underneath the footer's rounded corners, as in Figma */
+/* The last folder runs underneath the footer's rounded corners */
+.event-folder:last-child {
   margin-bottom: calc(-1 * clamp(64px, 8vw, 120px) - 50px);
-  padding: clamp(40px, 6vw, 88px) 0 clamp(96px, 12vw, 170px);
-  background: var(--color-surface);
 }
 
-.events-signup p {
-  max-width: 1280px;
+.event-folder:last-child .event-folder__panel {
+  padding-bottom: clamp(120px, 14vw, 200px);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.event-folder__empty {
   margin: 0;
 }
 
-.events-signup__cta {
+/* ---------- Event card ---------- */
+.event-card {
+  display: grid;
+  grid-template-columns: minmax(0, 648fr) minmax(0, 502fr);
+  gap: clamp(24px, 8.2vw, 118px);
+  align-items: start;
+  /* Leaves room under the fixed navbar when jumping here from the stairs */
+  scroll-margin-top: calc(var(--nav-offset) + 24px);
+}
+
+.event-card__text {
   display: flex;
-  width: fit-content;
-  margin: clamp(24px, 3.3vw, 48px) 0 0 auto;
+  flex-direction: column;
+}
+
+.event-card h3 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3.5vw, 3.125rem);
+}
+
+.event-card p {
+  margin: 0 0 1em;
+}
+
+.event-card__when {
+  font-weight: 500;
+}
+
+.event-card__cta {
+  align-self: flex-end;
+  gap: 0.5em;
+  margin-top: auto;
+}
+
+.event-card__icon {
+  display: inline-flex;
+  width: 1.1em;
+}
+
+.event-card__icon svg {
+  width: 100%;
+  height: auto;
+}
+
+.event-card__image {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 20px;
+  object-fit: cover;
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.event-card:hover .event-card__image {
+  transform: translateY(-6px) rotate(-1deg);
+}
+
+@media (max-width: 720px) {
+  .event-card {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card__image {
+    order: -1;
+    aspect-ratio: 4 / 3;
+  }
 }
