@@ -65,7 +65,31 @@
 }
 
 .home-about__polaroid:hover {
-  transform: translateY(-8px) rotate(-1.5deg);
+  transform: translateY(-8px) rotate(1deg);
+  animation: polaroid-wiggle 650ms var(--ease-out);
+}
+
+/* Caleigh's micro-interaction: the polaroid lifts and wiggles before settling */
+@keyframes polaroid-wiggle {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+
+  30% {
+    transform: translateY(-8px) rotate(-4deg);
+  }
+
+  55% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+
+  80% {
+    transform: translateY(-8px) rotate(-1.5deg);
+  }
+
+  100% {
+    transform: translateY(-8px) rotate(1deg);
+  }
 }
 
 .home-about__star {
@@ -204,7 +228,32 @@
 }
 
 .home-byte:hover .home-byte__arrow {
-  transform: translateX(10px);
+  transform: translate(6px, -12px);
+}
+
+/* Byte's two excitement lines wiggle while the card is hovered */
+.home-byte__mascot [data-name='Rectangle 2121'],
+.home-byte__mascot [data-name='Rectangle 2122'] {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+}
+
+.home-byte:hover .home-byte__mascot [data-name='Rectangle 2121'] {
+  animation: byte-excited 280ms ease-in-out infinite alternate;
+}
+
+.home-byte:hover .home-byte__mascot [data-name='Rectangle 2122'] {
+  animation: byte-excited 280ms ease-in-out -140ms infinite alternate;
+}
+
+@keyframes byte-excited {
+  from {
+    transform: rotate(-14deg) scale(0.9);
+  }
+
+  to {
+    transform: rotate(14deg) scale(1.1);
+  }
 }
 
 /* ---------- Our Events ---------- */
