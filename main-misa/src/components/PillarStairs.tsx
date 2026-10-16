@@ -27,9 +27,6 @@ const HIT_AREA = 'M2 154.5L0 0L190.5 -33L588.5 114L399.5 149.5L399.5 300.5Z'
 const BYTE_FEET = { x: 157, y: 251 }
 const GROUND = { x: 150, y: 2355 }
 const HOP_MS = 200
-// Wait a moment before Byte heads back, so brushing past the stairs doesn't
-// send Byte running up and down
-const RETURN_DELAY_MS = 350
 
 function stepOrigin(i: number) {
   return { x: 270 + STEP_X * i, y: 2059 + STEP_Y * i }
@@ -46,16 +43,19 @@ type ByteState = { step: number; facing: 1 | -1; hops: number }
 
 /**
  * The pillar events as a staircase, with Byte standing on the last event that's happened.
- * Hovering or focusing a step sends Byte hopping there; clicking jumps to its card.
+ * Hovering or focusing a step sends Byte hopping there, and Byte stays on it
+ * until another step is hovered. Clicking a step jumps to its card.
  */
 export default function PillarStairs({ events, linkedSlugs, restingStep }: PillarStairsProps) {
   const svgRef = useRef<SVGSVGElement>(null)
   const [seen, setSeen] = useState(false)
+  // The step under the mouse right now, which is highlighted
   const [hovered, setHovered] = useState<number | null>(null)
+  // The last step hovered, which Byte stays on after the mouse leaves
+  const [chosen, setChosen] = useState<number | null>(null)
   const [byte, setByte] = useState<ByteState>({ step: -1, facing: 1, hops: 0 })
-  const leaveTimer = useRef<number>(undefined)
 
-  const target = hovered ?? (seen ? restingStep : -1)
+  const target = chosen ?? (seen ? restingStep : -1)
 
   // Byte starts climbing the first time the stairs scroll into view
   useEffect(() => {
@@ -87,17 +87,12 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
     return () => clearTimeout(timer)
   }, [byte.step, target])
 
-  useEffect(() => () => clearTimeout(leaveTimer.current), [])
-
   const hoverStep = (i: number) => {
-    clearTimeout(leaveTimer.current)
     setHovered(i)
+    setChosen(i)
   }
 
-  const leaveStairs = () => {
-    clearTimeout(leaveTimer.current)
-    leaveTimer.current = window.setTimeout(() => setHovered(null), RETURN_DELAY_MS)
-  }
+  const leaveStairs = () => setHovered(null)
 
   const top = stepOrigin(events.length - 1)
   const feet = feetPosition(byte.step)
@@ -123,7 +118,7 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
 
           const step = (
             <g
-              className={`stairs__step${i === target ? ' is-active' : ''}`}
+              className={`stairs__step${i === hovered ? ' is-active' : ''}`}
               onPointerEnter={() => hoverStep(i)}
             >
               <path
