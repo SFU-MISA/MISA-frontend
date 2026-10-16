@@ -109,6 +109,15 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
       <path className="stairs__edge" d="M669 2360L1520 2174" />
 
       <g onPointerLeave={leaveStairs}>
+        {/* Invisible ground before the first step, so Byte can be sent back down */}
+        <rect
+          className="stairs__hit"
+          x="-10"
+          y="2040"
+          width="282"
+          height="330"
+          onPointerEnter={() => hoverStep(-1)}
+        />
         {events.map((event, i) => {
           const face = stepOrigin(i)
           const isTop = i === events.length - 1
