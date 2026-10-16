@@ -74,14 +74,10 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
     return () => observer.disconnect()
   }, [])
 
-  // Hop one step at a time towards the target, facing the way Byte is going
+  // Hop one step at a time towards the target, facing the way Byte is going.
+  // Byte keeps facing that way after landing, and only turns when sent back.
   useEffect(() => {
-    if (byte.step === target) {
-      // Once Byte arrives, turn back to face up the stairs
-      if (byte.facing === 1) return
-      const timer = setTimeout(() => setByte((state) => ({ ...state, facing: 1 })), HOP_MS)
-      return () => clearTimeout(timer)
-    }
+    if (byte.step === target) return
     const timer = setTimeout(() => {
       setByte(({ step, hops }) => {
         const direction = target > step ? 1 : -1
@@ -89,7 +85,7 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
       })
     }, HOP_MS)
     return () => clearTimeout(timer)
-  }, [byte.step, byte.facing, target])
+  }, [byte.step, target])
 
   useEffect(() => () => clearTimeout(leaveTimer.current), [])
 
