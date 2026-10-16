@@ -7,8 +7,6 @@ import byte from '../../assets/byte-footer.svg?raw'
 import './Footer.css'
 
 // Figma layer name of Byte's eye (only one shows from this angle)
-const BYTE_EYES = ['Vector 158']
-
 export default function Footer() {
   const footerRef = usePlayOnView<HTMLElement>(0.5)
 
@@ -40,7 +38,7 @@ export default function Footer() {
         <p className="footer__legal">MISA © {new Date().getFullYear()}</p>
       </div>
 
-      <ByteArt className="footer__byte" svg={byte} eyes={BYTE_EYES} reach={6} />
+      <ByteArt className="footer__byte" svg={byte} />
     </footer>
   )
 }

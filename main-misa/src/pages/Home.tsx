@@ -12,8 +12,8 @@ import byteMegaphone from '../assets/byte-megaphone.svg'
 import dashedArrow from '../assets/dashed-arrow.svg'
 import './Home.css'
 
-// Figma layer names of Byte's eyes in each drawing
-const HEAD_EYES = ['Vector 422']
+// Figma layer names of Byte's eyes. Only the front-facing Byte follows the
+// mouse; on the side-on drawings a moving eye looks odd.
 const LAPTOP_EYES = ['Vector 305', 'Vector 306']
 
 export default function Home() {
@@ -49,7 +49,7 @@ export default function Home() {
             alt="The MISA team"
           />
           <Polaroid className="home-about__polaroid" />
-          <ByteArt className="home-about__byte-head" svg={byteHead} eyes={HEAD_EYES} />
+          <ByteArt className="home-about__byte-head" svg={byteHead} />
         </div>
       </section>
 
