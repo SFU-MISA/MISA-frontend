@@ -45,7 +45,7 @@ function feetPosition(step: number) {
 type ByteState = { step: number; facing: 1 | -1; hops: number }
 
 /**
- * The pillar events as a staircase, with Byte climbing to the next event.
+ * The pillar events as a staircase, with Byte standing on the last event that's happened.
  * Hovering or focusing a step sends Byte hopping there; clicking jumps to its card.
  */
 export default function PillarStairs({ events, linkedSlugs, restingStep }: PillarStairsProps) {

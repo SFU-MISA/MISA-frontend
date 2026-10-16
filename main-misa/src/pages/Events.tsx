@@ -44,7 +44,8 @@ function EventCard({ event, action }: { event: PillarEvent; action: 'tickets' | 
 export default function Events() {
   const { upcoming, future } = splitUpcoming(PILLAR_EVENTS)
   const linkedSlugs = (upcoming ? [upcoming, ...future] : []).map((event) => event.slug)
-  const restingStep = upcoming ? PILLAR_EVENTS.indexOf(upcoming) : PILLAR_EVENTS.length - 1
+  // Byte waits on the last event that's already happened, just below the next one
+  const restingStep = upcoming ? PILLAR_EVENTS.indexOf(upcoming) - 1 : PILLAR_EVENTS.length - 1
 
   return (
     <>
