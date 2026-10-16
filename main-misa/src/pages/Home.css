@@ -256,6 +256,39 @@
   }
 }
 
+/* Phones can't hover, so the micro-interactions play once as each part
+   scrolls into view instead (see usePlayOnView) */
+@media (hover: none) {
+  .home-about__photos.is-playing .home-about__polaroid {
+    transform: translateY(-8px) rotate(1deg);
+    animation: polaroid-wiggle 650ms var(--ease-out) backwards;
+  }
+
+  .home-about__photos.is-playing .home-about__polaroid--center {
+    animation-delay: 150ms;
+  }
+
+  .home-about__photos.is-playing .home-about__polaroid:last-of-type {
+    animation-delay: 300ms;
+  }
+
+  .home-byte.is-playing .home-byte__mascot {
+    transform: translateY(-10px);
+  }
+
+  .home-byte.is-playing .home-byte__arrow {
+    transform: translate(6px, -12px);
+  }
+
+  .home-byte.is-playing .home-byte__mascot [data-name='Rectangle 2121'] {
+    animation: byte-excited 280ms ease-in-out 6 alternate;
+  }
+
+  .home-byte.is-playing .home-byte__mascot [data-name='Rectangle 2122'] {
+    animation: byte-excited 280ms ease-in-out -140ms 6 alternate;
+  }
+}
+
 /* ---------- Our Events ---------- */
 .home-events {
   margin-top: clamp(64px, 9.6vw, 138px);

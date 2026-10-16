@@ -1,6 +1,7 @@
 import Button from '../components/ui/Button.tsx'
 import ByteArt from '../components/ui/ByteArt.tsx'
 import Polaroid from '../components/ui/Polaroid.tsx'
+import { usePlayOnView } from '../hooks/usePlayOnView.ts'
 import { UPDATES } from '../data/updates.ts'
 import { EVENTS_PREVIEW } from '../data/eventsPreview.ts'
 import teamPhoto from '../assets/photos/team.jpg'
@@ -16,6 +17,9 @@ const HEAD_EYES = ['Vector 422']
 const LAPTOP_EYES = ['Vector 305', 'Vector 306']
 
 export default function Home() {
+  const photosRef = usePlayOnView<HTMLDivElement>()
+  const byteRef = usePlayOnView<HTMLDivElement>()
+
   return (
     <>
       <section className="home-hero placeholder" aria-label="Hero">
@@ -36,7 +40,7 @@ export default function Home() {
           </Button>
         </div>
 
-        <div className="home-about__photos">
+        <div className="home-about__photos" ref={photosRef}>
           <img className="home-about__star" src={star} alt="" />
           <Polaroid className="home-about__polaroid" />
           <Polaroid
@@ -85,7 +89,7 @@ export default function Home() {
       </section>
 
       <section className="container">
-        <div className="home-byte">
+        <div className="home-byte" ref={byteRef}>
           <h2 className="section-title">Meet Byte</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

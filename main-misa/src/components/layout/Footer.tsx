@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import ByteArt from '../ui/ByteArt.tsx'
+import { usePlayOnView } from '../../hooks/usePlayOnView.ts'
 import { FOOTER_LINKS } from '../../config/links.ts'
 import logo from '../../assets/logo-white.svg'
 import byte from '../../assets/byte-footer.svg?raw'
@@ -9,8 +10,10 @@ import './Footer.css'
 const BYTE_EYES = ['Vector 158']
 
 export default function Footer() {
+  const footerRef = usePlayOnView<HTMLElement>(0.5)
+
   return (
-    <footer className="footer">
+    <footer className="footer" ref={footerRef}>
       <div className="container footer__inner">
         <img className="footer__logo" src={logo} alt="MISA" />
         <p className="footer__name">

@@ -75,6 +75,13 @@
   transform: translateY(-8px);
 }
 
+/* On phones Byte pops up once the footer scrolls into view */
+@media (hover: none) {
+  .footer.is-playing .footer__byte {
+    transform: translateY(-8px);
+  }
+}
+
 @media (max-width: 640px) {
   .footer__byte {
     opacity: 0.35;

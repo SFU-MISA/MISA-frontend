@@ -14,7 +14,7 @@ type ByteArtProps = {
 const reducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-/** Byte, drawn inline so Byte's eyes can follow the mouse around the page. */
+/** Byte, drawn inline so Byte's eyes can follow the mouse (or a tap, on phones) around the page. */
 export default function ByteArt({ svg, eyes = [], reach = 3, className = '' }: ByteArtProps) {
   const ref = useRef<HTMLSpanElement>(null)
 
@@ -32,8 +32,7 @@ export default function ByteArt({ svg, eyes = [], reach = 3, className = '' }: B
     }
 
     let frame = 0
-    const onMove = (e: PointerEvent) => {
-      if (e.pointerType !== 'mouse') return
+    const look = (e: PointerEvent) => {
       cancelAnimationFrame(frame)
       frame = requestAnimationFrame(() => {
         // Aim from the middle of the eyes, so both look the same way
@@ -53,9 +52,19 @@ export default function ByteArt({ svg, eyes = [], reach = 3, className = '' }: B
       })
     }
 
+    // Follow the mouse as it moves; on touch screens, look where the user taps
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType === 'mouse') look(e)
+    }
+    const onTap = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') look(e)
+    }
+
     window.addEventListener('pointermove', onMove)
+    window.addEventListener('pointerdown', onTap)
     return () => {
       window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('pointerdown', onTap)
       cancelAnimationFrame(frame)
     }
   }, [eyes, reach])
