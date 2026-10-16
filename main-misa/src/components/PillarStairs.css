@@ -84,8 +84,58 @@
   }
 }
 
-/* Byte hops from step to step */
+/* Invisible hover areas; Byte and the flag never block the mouse */
+.stairs__hit {
+  fill: transparent;
+}
+
+.stairs__flag,
 .stairs__byte {
+  pointer-events: none;
+}
+
+/* Byte moves to each step, hopping on the way and turning to face where it's going */
+.stairs__byte,
+.stairs__turn {
   transform-box: view-box;
-  transition: transform 260ms var(--ease-out);
+  transform-origin: 0 0;
+}
+
+.stairs__byte {
+  transition: transform 200ms ease-in-out;
+}
+
+.stairs__turn {
+  transition: transform 120ms ease-out;
+}
+
+/* Two identical hops, alternated so the animation restarts on every step */
+.stairs__hop-0 {
+  animation: stairs-hop-a 200ms ease-out;
+}
+
+.stairs__hop-1 {
+  animation: stairs-hop-b 200ms ease-out;
+}
+
+@keyframes stairs-hop-a {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(-45px);
+  }
+}
+
+@keyframes stairs-hop-b {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(-45px);
+  }
 }
