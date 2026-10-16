@@ -104,6 +104,8 @@
   z-index: 2;
   width: clamp(56px, 13.5vw, 194px);
   pointer-events: none;
+  /* The Figma drop shadow, drawn by CSS so the star stays crisp when scaled up */
+  filter: drop-shadow(-0.2vw 0.6vw 0.4vw rgb(0 0 0 / 0.25));
 }
 
 .home-about__byte-head {
