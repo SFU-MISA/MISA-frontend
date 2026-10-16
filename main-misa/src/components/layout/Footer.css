@@ -82,8 +82,9 @@
   }
 }
 
+/* On phones Byte shrinks a little so it stays clear of the footer links */
 @media (max-width: 640px) {
   .footer__byte {
-    opacity: 0.35;
+    width: min(170px, 40vw);
   }
 }
