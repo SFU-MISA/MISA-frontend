@@ -1,3 +1,5 @@
+import connectPhoto from '../assets/photos/mis-connect/panel.jpg'
+
 // The four pillar events, in the order they climb the Events page staircase.
 // The next event that hasn't happened yet is shown as "Upcoming Event", and
 // anything after it under "Future Events". Dates and times are placeholders.
@@ -28,6 +30,7 @@ export const PILLAR_EVENTS: PillarEvent[] = [
     endTime: '20:00',
     location: 'SFU Burnaby',
     description: DESCRIPTION,
+    image: connectPhoto,
   },
   {
     slug: 'mis-link',

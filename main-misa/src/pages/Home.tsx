@@ -5,6 +5,8 @@ import { usePlayOnView } from '../hooks/usePlayOnView.ts'
 import { UPDATES } from '../data/updates.ts'
 import { EVENTS_PREVIEW } from '../data/eventsPreview.ts'
 import teamPhoto from '../assets/photos/team.jpg'
+import connectGroupPhoto from '../assets/photos/mis-connect/group-backdrop.jpg'
+import connectHeartsPhoto from '../assets/photos/mis-connect/hand-hearts.jpg'
 import star from '../assets/star.svg'
 import byteHead from '../assets/byte-head.svg?raw'
 import byteLaptop from '../assets/byte-laptop.svg?raw'
@@ -42,13 +44,21 @@ export default function Home() {
 
         <div className="home-about__photos" ref={photosRef}>
           <img className="home-about__star" src={star} alt="" />
-          <Polaroid className="home-about__polaroid" />
+          <Polaroid
+            className="home-about__polaroid"
+            src={connectGroupPhoto}
+            alt="Students at the MISA photo backdrop at MIS Connect"
+          />
           <Polaroid
             className="home-about__polaroid home-about__polaroid--center"
             src={teamPhoto}
             alt="The MISA team"
           />
-          <Polaroid className="home-about__polaroid" />
+          <Polaroid
+            className="home-about__polaroid"
+            src={connectHeartsPhoto}
+            alt="Friends making hand hearts at MIS Connect"
+          />
           <ByteArt className="home-about__byte-head" svg={byteHead} />
         </div>
       </section>

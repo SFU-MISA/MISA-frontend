@@ -1,3 +1,5 @@
+import connectPhoto from '../assets/photos/mis-connect/thumbs-up.jpg'
+
 // The four tiles in the Home page "Our Events" strip.
 export type EventPreview = {
   name: string
@@ -6,7 +8,7 @@ export type EventPreview = {
 }
 
 export const EVENTS_PREVIEW: EventPreview[] = [
-  { name: 'MIS Connect' },
+  { name: 'MIS Connect', image: connectPhoto },
   { name: 'MIS Link' },
   { name: 'MIS Breakthrough' },
   { name: 'MIS Bootcamp' },

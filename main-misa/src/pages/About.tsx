@@ -4,6 +4,14 @@ import PhotoWall from '../components/ui/PhotoWall.tsx'
 import { OPENINGS } from '../data/openings.ts'
 import './About.css'
 
+// Every photo in assets/photos/wall, in filename order
+const WALL_PHOTOS = Object.values(
+  import.meta.glob<string>('../assets/photos/wall/*.jpg', {
+    eager: true,
+    import: 'default',
+  }),
+)
+
 export default function About() {
   return (
     <>
@@ -18,7 +26,7 @@ export default function About() {
       </section>
 
       <div className="about-photos">
-        <PhotoWall />
+        <PhotoWall photos={WALL_PHOTOS} />
       </div>
 
       <section className="container about-pillars">
