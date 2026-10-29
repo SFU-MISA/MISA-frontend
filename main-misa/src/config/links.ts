@@ -14,3 +14,15 @@ export const FOOTER_LINKS = [
   ...NAV_LINKS,
   { to: '/team', label: 'Team' },
 ] as const
+
+export const INSTAGRAM_URL = 'https://www.instagram.com/sfu_misa/'
+
+// "Connect on our socials" buttons on the About page
+export const SOCIAL_LINKS = [
+  { to: INSTAGRAM_URL, label: 'Instagram' },
+  { to: 'https://www.linkedin.com/company/sfumisa/', label: 'LinkedIn' },
+  {
+    to: 'https://docs.google.com/forms/d/e/1FAIpQLSdlTyzGJPON_YUvnWgdUkbC0yXSfcfQNh12okgz03vxb-0ZKQ/viewform',
+    label: 'Join our newsletter',
+  },
+] as const

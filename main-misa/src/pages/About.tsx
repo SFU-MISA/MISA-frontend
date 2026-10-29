@@ -2,6 +2,8 @@ import ExecGrid from '../components/ExecGrid.tsx'
 import Button from '../components/ui/Button.tsx'
 import PhotoWall from '../components/ui/PhotoWall.tsx'
 import { OPENINGS } from '../data/openings.ts'
+import { SOCIAL_POSTS } from '../data/socialPosts.ts'
+import { SOCIAL_LINKS } from '../config/links.ts'
 import './About.css'
 
 // Every photo in assets/photos/wall, in filename order
@@ -55,10 +57,21 @@ export default function About() {
           Connect on our socials
         </h2>
         <ul className="about-socials__grid">
-          {Array.from({ length: 5 }, (_, i) => (
-            <li key={i} className="about-socials__tile placeholder" />
+          {SOCIAL_POSTS.map((post, i) => (
+            <li key={i}>
+              <a className="about-socials__tile" href={post.url}>
+                <img src={post.image} alt={post.alt} />
+              </a>
+            </li>
           ))}
         </ul>
+        <div className="about-socials__links">
+          {SOCIAL_LINKS.map(({ to, label }) => (
+            <Button key={to} to={to}>
+              {label}
+            </Button>
+          ))}
+        </div>
       </section>
 
       <ExecGrid />
