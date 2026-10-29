@@ -18,6 +18,8 @@ const headshot = (file: string) => headshots[`../assets/photos/headshots/${file}
 
 export const EXEC_TEAM: ExecMember[] = [
   { name: 'Daniel Kim', role: 'President' },
+  { name: 'Victor Yu', role: 'Co-Vice President', photo: headshot('victor-yu.jpg') },
+  { name: 'Cloris Lau', role: 'Co-Vice President', photo: headshot('cloris-lau.jpg') },
   { name: 'Phineas Tran', role: 'Director of Finance', photo: headshot('phineas-tran.jpg') },
   {
     name: 'Shannon Tang',
@@ -36,7 +38,4 @@ export const EXEC_TEAM: ExecMember[] = [
   { name: 'Esther Cho', role: 'Director of Software Systems', photo: headshot('esther-cho.jpg') },
   { name: 'Tiensa Tran', role: 'Director of Marketing', photo: headshot('tiensa-tran.jpg') },
   { name: 'Emma Qiu', role: 'Director of Human Resources', photo: headshot('emma-qiu.jpg') },
-  // In the photoshoot but not in the posts; names and roles still to come
-  { name: 'Name', role: 'Title', photo: headshot('unknown-1.jpg') },
-  { name: 'Name', role: 'Title', photo: headshot('unknown-2.jpg') },
 ]
