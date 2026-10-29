@@ -3,7 +3,10 @@ import Button from '../components/ui/Button.tsx'
 import PhotoWall from '../components/ui/PhotoWall.tsx'
 import { OPENINGS } from '../data/openings.ts'
 import { SOCIAL_POSTS } from '../data/socialPosts.ts'
-import { SOCIAL_LINKS } from '../config/links.ts'
+import { INSTAGRAM_URL, LINKEDIN_URL, NEWSLETTER_URL } from '../config/links.ts'
+import instagramIcon from '../assets/instagram.svg?raw'
+import linkedinIcon from '../assets/linkedin.svg?raw'
+import mailIcon from '../assets/mail.svg?raw'
 import './About.css'
 
 // Every photo in assets/photos/wall, in filename order
@@ -53,9 +56,23 @@ export default function About() {
       </section>
 
       <section className="container about-socials">
-        <h2 className="section-title about-socials__title">
-          Connect on our socials
-        </h2>
+        <div className="about-socials__header">
+          <h2 className="section-title about-socials__title">
+            Connect on our socials
+          </h2>
+          <div className="about-socials__links">
+            <a className="about-socials__icon" href={INSTAGRAM_URL} aria-label="Instagram">
+              <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: instagramIcon }} />
+            </a>
+            <a className="about-socials__icon" href={LINKEDIN_URL} aria-label="LinkedIn">
+              <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: linkedinIcon }} />
+            </a>
+            <a className="about-socials__newsletter" href={NEWSLETTER_URL}>
+              <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: mailIcon }} />
+              Join our newsletter
+            </a>
+          </div>
+        </div>
         <ul className="about-socials__grid">
           {SOCIAL_POSTS.map((post, i) => (
             <li key={i}>
@@ -65,13 +82,6 @@ export default function About() {
             </li>
           ))}
         </ul>
-        <div className="about-socials__links">
-          {SOCIAL_LINKS.map(({ to, label }) => (
-            <Button key={to} to={to}>
-              {label}
-            </Button>
-          ))}
-        </div>
       </section>
 
       <ExecGrid />

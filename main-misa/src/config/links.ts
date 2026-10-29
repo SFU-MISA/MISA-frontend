@@ -17,12 +17,7 @@ export const FOOTER_LINKS = [
 
 export const INSTAGRAM_URL = 'https://www.instagram.com/sfu_misa/'
 
-// "Connect on our socials" buttons on the About page
-export const SOCIAL_LINKS = [
-  { to: INSTAGRAM_URL, label: 'Instagram' },
-  { to: 'https://www.linkedin.com/company/sfumisa/', label: 'LinkedIn' },
-  {
-    to: 'https://docs.google.com/forms/d/e/1FAIpQLSdlTyzGJPON_YUvnWgdUkbC0yXSfcfQNh12okgz03vxb-0ZKQ/viewform',
-    label: 'Join our newsletter',
-  },
-] as const
+export const LINKEDIN_URL = 'https://www.linkedin.com/company/sfumisa/'
+
+export const NEWSLETTER_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdlTyzGJPON_YUvnWgdUkbC0yXSfcfQNh12okgz03vxb-0ZKQ/viewform'
