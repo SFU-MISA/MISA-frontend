@@ -3,8 +3,6 @@
 .events-hero {
   height: clamp(420px, 71vw, 100svh);
   background: var(--color-placeholder);
-  color: #000;
-  font-size: 1.25rem;
 }
 
 /* ---------- Pillar events staircase ---------- */

@@ -94,6 +94,14 @@ a {
   font-size: 0.875rem;
 }
 
+/* Full-bleed photo filling a page's hero section */
+.hero-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Respect the OS "reduce motion" setting for every animation on the site */
 @media (prefers-reduced-motion: reduce) {
   *,

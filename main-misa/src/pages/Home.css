@@ -5,8 +5,11 @@
 .home-hero {
   height: clamp(480px, 87vw, 100svh);
   background: var(--color-placeholder);
-  color: #000;
-  font-size: 1.25rem;
+}
+
+/* The arch covers the bottom of the hero, so keep the top of the photo in view */
+.home-hero .hero-image {
+  object-position: center top;
 }
 
 /* ---------- About MISA (blue arch over the bottom of the hero) ---------- */

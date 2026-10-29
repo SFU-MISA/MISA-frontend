@@ -5,6 +5,8 @@ import { usePlayOnView } from '../hooks/usePlayOnView.ts'
 import { UPDATES } from '../data/updates.ts'
 import { EVENTS_PREVIEW } from '../data/eventsPreview.ts'
 import teamPhoto from '../assets/photos/team.jpg'
+// Placeholder until a proper hero shot is picked
+import heroPhoto from '../assets/photos/hero/home.jpg'
 import connectGroupPhoto from '../assets/photos/mis-connect/group-backdrop.jpg'
 import connectHeartsPhoto from '../assets/photos/mis-connect/hand-hearts.jpg'
 import star from '../assets/star.svg'
@@ -24,8 +26,8 @@ export default function Home() {
 
   return (
     <>
-      <section className="home-hero placeholder" aria-label="Hero">
-        Hero image
+      <section className="home-hero" aria-label="Hero">
+        <img className="hero-image" src={heroPhoto} alt="Students listening to the panel at MIS Connect" />
       </section>
 
       <section className="home-about">

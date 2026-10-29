@@ -4,6 +4,8 @@ import { TICKETING_PORTAL_URL } from '../config/links.ts'
 import { PILLAR_EVENTS, type PillarEvent } from '../data/pillarEvents.ts'
 import { calendarFileUrl, formatDateTime, splitUpcoming } from '../utils/eventDates.ts'
 import calendarIcon from '../assets/calendar-add.svg?raw'
+// Placeholder until a proper hero shot is picked
+import heroPhoto from '../assets/photos/hero/events.jpg'
 import './Events.css'
 
 function EventCard({ event, action }: { event: PillarEvent; action: 'tickets' | 'calendar' }) {
@@ -49,8 +51,8 @@ export default function Events() {
 
   return (
     <>
-      <section className="events-hero placeholder" aria-label="Hero">
-        Hero image
+      <section className="events-hero" aria-label="Hero">
+        <img className="hero-image" src={heroPhoto} alt="The speaker panel at MIS Connect" />
       </section>
 
       <section className="events-pillars">
