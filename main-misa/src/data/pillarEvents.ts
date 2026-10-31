@@ -1,4 +1,7 @@
 import connectPhoto from '../assets/photos/mis-connect/panel.jpg'
+import linkPhoto from '../assets/photos/mis-link/networking.jpg'
+import breakthroughPhoto from '../assets/photos/mis-breakthrough/presenting.jpg'
+import bootcampPhoto from '../assets/photos/mis-bootcamp/teamwork.jpg'
 
 // The four pillar events, in the order they climb the Events page staircase.
 // The next event that hasn't happened yet is shown as "Upcoming Event", and
@@ -40,6 +43,7 @@ export const PILLAR_EVENTS: PillarEvent[] = [
     endTime: '20:00',
     location: 'SFU Burnaby',
     description: DESCRIPTION,
+    image: linkPhoto,
   },
   {
     slug: 'mis-breakthrough',
@@ -49,6 +53,7 @@ export const PILLAR_EVENTS: PillarEvent[] = [
     endTime: '20:00',
     location: 'SFU Burnaby',
     description: DESCRIPTION,
+    image: breakthroughPhoto,
   },
   {
     slug: 'mis-bootcamp',
@@ -58,5 +63,6 @@ export const PILLAR_EVENTS: PillarEvent[] = [
     endTime: '16:00',
     location: 'SFU Burnaby',
     description: DESCRIPTION,
+    image: bootcampPhoto,
   },
 ]
