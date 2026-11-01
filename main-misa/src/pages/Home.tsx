@@ -1,9 +1,16 @@
+import type { CSSProperties } from 'react'
 import Button from '../components/ui/Button.tsx'
 import ByteArt from '../components/ui/ByteArt.tsx'
 import Polaroid from '../components/ui/Polaroid.tsx'
 import { usePlayOnView } from '../hooks/usePlayOnView.ts'
 import { UPDATES } from '../data/updates.ts'
 import { EVENTS_PREVIEW } from '../data/eventsPreview.ts'
+import {
+  IN_KIND_SPONSORS,
+  MONETARY_SPONSORS,
+  SPONSORS_EVENT,
+  type Sponsor,
+} from '../data/sponsors.ts'
 import teamPhoto from '../assets/photos/team.jpg'
 // Placeholder until a proper hero shot is picked
 import heroPhoto from '../assets/photos/hero/home.jpg'
@@ -135,6 +142,84 @@ export default function Home() {
           </Button>
         </div>
       </section>
+
+      <section className="home-sponsors" aria-labelledby="home-sponsors-title">
+        <div className="container">
+          <h2 id="home-sponsors-title" className="section-title">
+            Our Sponsors
+          </h2>
+          <p className="home-sponsors__intro">
+            A big thank you to the partners who made {SPONSORS_EVENT} possible
+            and keep supporting our students.
+          </p>
+
+          <h3 className="home-sponsors__label">Monetary Sponsors</h3>
+          <ul className="home-sponsors__featured">
+            {MONETARY_SPONSORS.map((sponsor) => (
+              <li key={sponsor.name}>
+                <SponsorCard sponsor={sponsor} featured />
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="home-sponsors__label">In-Kind Sponsors</h3>
+        </div>
+
+        {/* The list is drawn twice so the loop has no gap; the copy is
+            hidden from screen readers and skipped by Tab */}
+        <div
+          className="home-sponsors__viewport"
+          style={{ '--sponsor-count': IN_KIND_SPONSORS.length } as CSSProperties}
+        >
+          <div className="home-sponsors__track">
+            {[false, true].map((isCopy) => (
+              <ul
+                key={String(isCopy)}
+                className="home-sponsors__list"
+                aria-hidden={isCopy || undefined}
+              >
+                {IN_KIND_SPONSORS.map((sponsor) => (
+                  <li key={sponsor.name}>
+                    <SponsorCard sponsor={sponsor} hidden={isCopy} />
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
+  )
+}
+
+type SponsorCardProps = {
+  sponsor: Sponsor
+  /** Larger card, for monetary sponsors */
+  featured?: boolean
+  /** The carousel's repeated copy: hidden from screen readers and Tab */
+  hidden?: boolean
+}
+
+/** A sponsor's logo, or their name until a logo is added */
+function SponsorCard({ sponsor, featured = false, hidden = false }: SponsorCardProps) {
+  const className = `home-sponsors__card${featured ? ' home-sponsors__card--featured' : ''}`
+  const content = sponsor.logo ? (
+    <img src={sponsor.logo} alt={hidden ? '' : sponsor.name} />
+  ) : (
+    sponsor.name
+  )
+
+  if (!sponsor.url) return <div className={className}>{content}</div>
+
+  return (
+    <a
+      className={`${className} home-sponsors__card--link`}
+      href={sponsor.url}
+      target="_blank"
+      rel="noreferrer"
+      tabIndex={hidden ? -1 : undefined}
+    >
+      {content}
+    </a>
   )
 }
