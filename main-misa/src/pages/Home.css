@@ -5,6 +5,8 @@
 .home-hero {
   height: clamp(480px, 87vw, 100svh);
   background: var(--color-placeholder);
+  /* Keeps the parallax photo inside the hero */
+  overflow: clip;
 }
 
 /* The arch covers the bottom of the hero, so keep the top of the photo in view */
