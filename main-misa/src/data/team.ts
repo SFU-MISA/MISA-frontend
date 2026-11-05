@@ -34,7 +34,7 @@ export const EXEC_TEAM: ExecMember[] = [
   { name: 'Rodrigo Velazco', role: 'Director of Strategy', photo: headshot('rodrigo-velazco.jpg') },
   { name: 'Lauryn Yau', role: 'Co-Director of Design', photo: headshot('lauryn-yau.jpg') },
   { name: 'Areeba Ali', role: 'Co-Director of Design', photo: headshot('areeba-ali.jpg') },
-  { name: 'Daniel Shi', role: 'Director of Web Design', photo: headshot('daniel-shi.jpg') },
+  { name: 'Daniel Shi', role: 'Director of Web Development', photo: headshot('daniel-shi.jpg') },
   { name: 'Esther Cho', role: 'Director of Software Systems', photo: headshot('esther-cho.jpg') },
   { name: 'Tiensa Tran', role: 'Director of Marketing', photo: headshot('tiensa-tran.jpg') },
   { name: 'Emma Qiu', role: 'Director of Human Resources', photo: headshot('emma-qiu.jpg') },
