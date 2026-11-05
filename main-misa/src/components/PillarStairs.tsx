@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
 import type { PillarEvent } from '../data/pillarEvents.ts'
 import { formatShortDate } from '../utils/eventDates.ts'
 import byteRunning from '../assets/byte-running.svg'
@@ -26,7 +26,23 @@ const HIT_AREA = 'M2 154.5L0 0L190.5 -33L588.5 114L399.5 149.5L399.5 300.5Z'
 // Byte's feet, measured from the top-left of its image
 const BYTE_FEET = { x: 157, y: 251 }
 const GROUND = { x: 150, y: 2355 }
-const HOP_MS = 200
+const HOP_MS = 240
+// The steps rise into place one after another when first scrolled to
+// (see .stairs.is-built in the CSS); Byte sets off once they're down
+const STEP_STAGGER_MS = 110
+const BUILD_MS = 650
+
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+/** Smooth-scrolls to a step's event card instead of jumping there */
+function scrollToCard(e: MouseEvent<HTMLAnchorElement>, slug: string) {
+  const card = document.getElementById(slug)
+  if (!card) return
+  e.preventDefault()
+  card.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' })
+  // Keep the router's history state; only the hash changes
+  window.history.replaceState(window.history.state, '', `#${slug}`)
+}
 
 function stepOrigin(i: number) {
   return { x: 270 + STEP_X * i, y: 2059 + STEP_Y * i }
@@ -49,13 +65,22 @@ type ByteState = { step: number; facing: 1 | -1; hops: number }
 export default function PillarStairs({ events, linkedSlugs, restingStep }: PillarStairsProps) {
   const svgRef = useRef<SVGSVGElement>(null)
   const [seen, setSeen] = useState(false)
+  // Byte waits at the bottom until the steps have finished rising
+  const [climbing, setClimbing] = useState(false)
   // The step under the mouse right now, which is highlighted
   const [hovered, setHovered] = useState<number | null>(null)
   // The last step hovered, which Byte stays on after the mouse leaves
   const [chosen, setChosen] = useState<number | null>(null)
   const [byte, setByte] = useState<ByteState>({ step: -1, facing: 1, hops: 0 })
 
-  const target = chosen ?? (seen ? restingStep : -1)
+  const target = chosen ?? (climbing ? restingStep : -1)
+
+  useEffect(() => {
+    if (!seen) return
+    const buildTime = prefersReducedMotion() ? 0 : BUILD_MS + STEP_STAGGER_MS * events.length
+    const timer = setTimeout(() => setClimbing(true), buildTime)
+    return () => clearTimeout(timer)
+  }, [seen, events.length])
 
   // Byte starts climbing the first time the stairs scroll into view
   useEffect(() => {
@@ -100,7 +125,8 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
   return (
     <svg
       ref={svgRef}
-      className="stairs"
+      className={`stairs${seen ? ' is-built' : ''}`}
+      style={{ '--step-count': events.length } as CSSProperties}
       viewBox="-10 1190 1530 1180"
       role="group"
       aria-label="Pillar events timeline"
@@ -128,6 +154,7 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
           const step = (
             <g
               className={`stairs__step${i === hovered ? ' is-active' : ''}`}
+              style={{ '--i': i } as CSSProperties}
               onPointerEnter={() => hoverStep(i)}
             >
               <path
@@ -163,6 +190,7 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
             <a
               key={event.slug}
               href={`#${event.slug}`}
+              onClick={(e) => scrollToCard(e, event.slug)}
               onFocus={() => hoverStep(i)}
               onBlur={leaveStairs}
             >
@@ -193,6 +221,7 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
         <g className={byte.hops === 0 ? undefined : `stairs__hop-${byte.hops % 2}`}>
           <g style={{ transform: `scaleX(${byte.facing})` }} className="stairs__turn">
             <image
+              className="stairs__byte-img"
               href={byteRunning}
               x={-BYTE_FEET.x}
               y={-BYTE_FEET.y}

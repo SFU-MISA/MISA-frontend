@@ -21,18 +21,51 @@
 .stairs__top {
   fill: var(--color-surface);
   stroke: var(--color-lavender);
-  transition: fill var(--duration) var(--ease-out);
 }
 
 .stairs__face {
   fill: var(--color-lavender);
-  transition: fill var(--duration) var(--ease-out);
 }
 
 .stairs__name {
   font-size: 50px;
   fill: var(--color-text);
-  transition: fill var(--duration) var(--ease-out);
+}
+
+.stairs__step > * {
+  transition:
+    fill var(--duration) var(--ease-out),
+    translate 260ms var(--ease-out);
+}
+
+/* The highlighted step lifts a touch, like it's been pressed up to meet Byte */
+.stairs__step.is-active > :not(.stairs__hit) {
+  translate: 0 -8px;
+}
+
+/* ---------- Build-in: the first time the stairs scroll into view, each
+   step rises into place after the one below it, then the flag goes up ---------- */
+.stairs__step {
+  transition:
+    opacity 450ms var(--ease-out),
+    translate 700ms cubic-bezier(0.34, 1.4, 0.64, 1);
+  transition-delay: calc(var(--i, 0) * 110ms);
+}
+
+.js-reveal .stairs:not(.is-built) .stairs__step {
+  opacity: 0;
+  translate: 0 160px;
+}
+
+.stairs__flag {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  transition: scale 600ms cubic-bezier(0.34, 1.4, 0.64, 1);
+  transition-delay: calc(var(--step-count, 4) * 110ms + 250ms);
+}
+
+.js-reveal .stairs:not(.is-built) .stairs__flag {
+  scale: 1 0;
 }
 
 .stairs__date {
@@ -102,40 +135,74 @@
 }
 
 .stairs__byte {
-  transition: transform 200ms ease-in-out;
+  transition: transform 240ms ease-in-out;
 }
 
 .stairs__turn {
   transition: transform 120ms ease-out;
 }
 
-/* Two identical hops, alternated so the animation restarts on every step */
+/* Two identical hops, alternated so the animation restarts on every step.
+   Byte crouches, stretches on the way up, and squashes on landing; scaling
+   is around Byte's feet. */
 .stairs__hop-0 {
-  animation: stairs-hop-a 200ms ease-out;
+  animation: stairs-hop-a 240ms ease-out;
 }
 
 .stairs__hop-1 {
-  animation: stairs-hop-b 200ms ease-out;
+  animation: stairs-hop-b 240ms ease-out;
 }
 
 @keyframes stairs-hop-a {
-  0%,
-  100% {
-    transform: translateY(0);
+  0% {
+    transform: translateY(0) scale(1.08, 0.9);
   }
 
-  45% {
-    transform: translateY(-45px);
+  40% {
+    transform: translateY(-50px) scale(0.94, 1.08);
+  }
+
+  80% {
+    transform: translateY(0) scale(1.06, 0.92);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
   }
 }
 
 @keyframes stairs-hop-b {
-  0%,
-  100% {
-    transform: translateY(0);
+  0% {
+    transform: translateY(0) scale(1.08, 0.9);
   }
 
-  45% {
-    transform: translateY(-45px);
+  40% {
+    transform: translateY(-50px) scale(0.94, 1.08);
+  }
+
+  80% {
+    transform: translateY(0) scale(1.06, 0.92);
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Byte breathes gently while standing still */
+.stairs__byte-img {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  animation: stairs-idle 2.6s ease-in-out infinite;
+}
+
+@keyframes stairs-idle {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.02, 0.97);
   }
 }
