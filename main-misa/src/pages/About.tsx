@@ -21,8 +21,8 @@ export default function About() {
   return (
     <>
       <section className="container page-top">
-        <h1 className="section-title">About Us</h1>
-        <p className="about-intro">
+        <h1 className="section-title" data-reveal>About Us</h1>
+        <p className="about-intro" data-reveal>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -30,11 +30,11 @@ export default function About() {
         </p>
       </section>
 
-      <div className="about-photos">
+      <div className="about-photos" data-reveal>
         <PhotoWall photos={WALL_PHOTOS} />
       </div>
 
-      <section className="container about-pillars">
+      <section className="container about-pillars" data-reveal="stagger">
         <article className="about-card">
           <h2 className="section-title">Mission</h2>
           <p>
@@ -56,7 +56,7 @@ export default function About() {
       </section>
 
       <section className="container about-socials">
-        <div className="about-socials__header">
+        <div className="about-socials__header" data-reveal>
           <h2 className="section-title about-socials__title">
             Connect on our socials
           </h2>
@@ -73,7 +73,7 @@ export default function About() {
             </a>
           </div>
         </div>
-        <ul className="about-socials__grid">
+        <ul className="about-socials__grid" data-reveal="stagger">
           {SOCIAL_POSTS.map((post, i) => (
             <li key={i}>
               <a className="about-socials__tile" href={post.url}>
@@ -88,9 +88,9 @@ export default function About() {
 
       <section className="about-join">
         <div className="container">
-          <h2 className="section-title">Join our team!</h2>
+          <h2 className="section-title" data-reveal>Join our team!</h2>
           {OPENINGS.length > 0 ? (
-            <ul className="about-join__list">
+            <ul className="about-join__list" data-reveal="stagger">
               {OPENINGS.map((opening) => (
                 <li key={opening.role} className="about-card">
                   <h3>{opening.role}</h3>
@@ -100,7 +100,7 @@ export default function About() {
               ))}
             </ul>
           ) : (
-            <p className="about-join__empty">
+            <p className="about-join__empty" data-reveal>
               Hiring opportunities will be posted here.
               <br />
               Check back another time!

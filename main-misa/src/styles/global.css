@@ -11,10 +11,6 @@ body {
   margin: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: var(--font-body);
   font-size: var(--text-body);
@@ -69,6 +65,14 @@ a {
 .page {
   flex: 1;
   padding-bottom: clamp(64px, 8vw, 120px);
+  /* Each page fades in when navigated to (Layout keys <main> by path) */
+  animation: page-enter 450ms var(--ease-out) backwards;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
 }
 
 /* The nav floats over the top of the page, so pages without a full-bleed
@@ -100,6 +104,31 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Hero photos drift down a little slower than the page scrolls. Only in
+   browsers with scroll-driven animations; others just scroll normally. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-image {
+      animation: hero-parallax linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+  }
+}
+
+@keyframes hero-parallax {
+  to {
+    transform: translateY(18%) scale(1.04);
+  }
+}
+
+/* Scroll reveal (see useScrollReveal): content waits, invisible, until it
+   scrolls into view. Only applies when the reveal script will run. */
+.js-reveal [data-reveal]:not([data-reveal='stagger']):not(.is-revealed),
+.js-reveal [data-reveal='stagger']:not(.is-revealed) > * {
+  opacity: 0;
 }
 
 /* Respect the OS "reduce motion" setting for every animation on the site */

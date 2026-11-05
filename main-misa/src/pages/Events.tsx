@@ -10,7 +10,7 @@ import './Events.css'
 
 function EventCard({ event, action }: { event: PillarEvent; action: 'tickets' | 'calendar' }) {
   return (
-    <article className="event-card" id={event.slug}>
+    <article className="event-card" id={event.slug} data-reveal>
       <div className="event-card__text">
         <h3>{event.name}</h3>
         <p className="event-card__when">{formatDateTime(event)}</p>
@@ -57,7 +57,7 @@ export default function Events() {
 
       <section className="events-pillars">
         <div className="container">
-          <h1 className="section-title">Pillar Events</h1>
+          <h1 className="section-title" data-reveal>Pillar Events</h1>
         </div>
         <PillarStairs
           events={PILLAR_EVENTS}

@@ -5,8 +5,8 @@ import './ExecGrid.css'
 export default function ExecGrid() {
   return (
     <section className="container exec-grid" id="team">
-      <h2 className="section-title">{TEAM_YEAR} Executive Team</h2>
-      <ul className="exec-grid__list">
+      <h2 className="section-title" data-reveal>{TEAM_YEAR} Executive Team</h2>
+      <ul className="exec-grid__list" data-reveal="stagger">
         {EXEC_TEAM.map((member, i) => (
           <li key={i} className="exec-grid__member">
             {member.photo ? (

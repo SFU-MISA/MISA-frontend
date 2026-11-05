@@ -47,7 +47,7 @@ export default function Home() {
       </section>
 
       <section className="home-about">
-        <div className="container home-about__text">
+        <div className="container home-about__text" data-reveal="stagger">
           <h2 className="section-title">About MISA</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -60,7 +60,7 @@ export default function Home() {
           </Button>
         </div>
 
-        <div className="home-about__photos" ref={photosRef}>
+        <div className="home-about__photos" ref={photosRef} data-reveal="stagger">
           <img className="home-about__star" src={star} alt="" />
           <Polaroid
             className="home-about__polaroid"
@@ -83,11 +83,11 @@ export default function Home() {
 
       <section className="home-updates">
         <div className="container">
-          <h2 className="section-title">Updates</h2>
+          <h2 className="section-title" data-reveal>Updates</h2>
         </div>
 
         {UPDATES.length > 0 ? (
-          <ul className="home-updates__track">
+          <ul className="home-updates__track" data-reveal="stagger">
             {UPDATES.map((update, i) => (
               <li key={i} className="home-updates__card">
                 {update.image ? (
@@ -102,7 +102,7 @@ export default function Home() {
           </ul>
         ) : (
           <div className="container">
-            <div className="home-updates__empty">
+            <div className="home-updates__empty" data-reveal>
               <div>
                 <h3>No current updates</h3>
                 <p>
@@ -117,7 +117,7 @@ export default function Home() {
       </section>
 
       <section className="container">
-        <div className="home-byte" ref={byteRef}>
+        <div className="home-byte" ref={byteRef} data-reveal>
           <h2 className="section-title">Meet Byte</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -134,8 +134,8 @@ export default function Home() {
 
       <section className="home-events">
         <div className="container">
-          <h2 className="section-title">Our Events</h2>
-          <ul className="home-events__grid">
+          <h2 className="section-title" data-reveal>Our Events</h2>
+          <ul className="home-events__grid" data-reveal="stagger">
             {EVENTS_PREVIEW.map((event) => (
               <li key={event.name} className="home-events__tile">
                 {event.image ? (
@@ -154,15 +154,15 @@ export default function Home() {
 
       <section className="home-sponsors" aria-labelledby="home-sponsors-title">
         <div className="container">
-          <h2 id="home-sponsors-title" className="section-title">
+          <h2 id="home-sponsors-title" className="section-title" data-reveal>
             Our Sponsors
           </h2>
-          <p className="home-sponsors__intro">
+          <p className="home-sponsors__intro" data-reveal>
             A big thank you to the partners who made {SPONSORS_EVENT} possible
             and keep supporting our students.
           </p>
 
-          <ul className="home-sponsors__featured">
+          <ul className="home-sponsors__featured" data-reveal="stagger">
             {MONETARY_SPONSORS.map((sponsor) => (
               <li key={sponsor.name}>
                 <SponsorCard sponsor={sponsor} featured />
@@ -175,6 +175,7 @@ export default function Home() {
             repeats are hidden from screen readers and skipped by Tab */}
         <div
           className="home-sponsors__viewport"
+          data-reveal
           style={
             {
               '--sponsor-count': IN_KIND_SPONSORS.length * CAROUSEL_REPEATS,
