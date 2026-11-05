@@ -33,6 +33,16 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--shadow);
+  transition:
+    translate 400ms var(--ease-out),
+    opacity 400ms var(--ease-out);
+}
+
+/* Slides up out of the way while scrolling down, back as soon as the user
+   scrolls up. Stays put while a link inside has keyboard focus. */
+.navbar.is-tucked:not(:focus-within) .navbar__pill {
+  translate: 0 calc(-100% - var(--nav-top) - 12px);
+  opacity: 0;
 }
 
 .navbar__brand {
