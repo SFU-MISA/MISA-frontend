@@ -27,6 +27,15 @@ import './Home.css'
 // mouse; on the side-on drawings a moving eye looks odd.
 const LAPTOP_EYES = ['Vector 305', 'Vector 306']
 
+// With only a few logos, one pass of the carousel is narrower than a wide
+// screen and the loop shows a gap, so the logos repeat until there are at
+// least this many per pass
+const CAROUSEL_MIN_CARDS = 16
+const CAROUSEL_REPEATS = Math.max(
+  1,
+  Math.ceil(CAROUSEL_MIN_CARDS / Math.max(IN_KIND_SPONSORS.length, 1)),
+)
+
 export default function Home() {
   const photosRef = usePlayOnView<HTMLDivElement>()
   const byteRef = usePlayOnView<HTMLDivElement>()
@@ -153,7 +162,6 @@ export default function Home() {
             and keep supporting our students.
           </p>
 
-          <h3 className="home-sponsors__label">Monetary Sponsors</h3>
           <ul className="home-sponsors__featured">
             {MONETARY_SPONSORS.map((sponsor) => (
               <li key={sponsor.name}>
@@ -161,15 +169,17 @@ export default function Home() {
               </li>
             ))}
           </ul>
-
-          <h3 className="home-sponsors__label">In-Kind Sponsors</h3>
         </div>
 
-        {/* The list is drawn twice so the loop has no gap; the copy is
-            hidden from screen readers and skipped by Tab */}
+        {/* The list is drawn twice so the loop has no gap; the copy and any
+            repeats are hidden from screen readers and skipped by Tab */}
         <div
           className="home-sponsors__viewport"
-          style={{ '--sponsor-count': IN_KIND_SPONSORS.length } as CSSProperties}
+          style={
+            {
+              '--sponsor-count': IN_KIND_SPONSORS.length * CAROUSEL_REPEATS,
+            } as CSSProperties
+          }
         >
           <div className="home-sponsors__track">
             {[false, true].map((isCopy) => (
@@ -178,11 +188,17 @@ export default function Home() {
                 className="home-sponsors__list"
                 aria-hidden={isCopy || undefined}
               >
-                {IN_KIND_SPONSORS.map((sponsor) => (
-                  <li key={sponsor.name}>
-                    <SponsorCard sponsor={sponsor} hidden={isCopy} />
-                  </li>
-                ))}
+                {Array.from({ length: CAROUSEL_REPEATS }, (_, repeat) =>
+                  IN_KIND_SPONSORS.map((sponsor) => (
+                    <li
+                      key={`${repeat}-${sponsor.name}`}
+                      className={repeat > 0 ? 'home-sponsors__repeat' : undefined}
+                      aria-hidden={(!isCopy && repeat > 0) || undefined}
+                    >
+                      <SponsorCard sponsor={sponsor} hidden={isCopy || repeat > 0} />
+                    </li>
+                  )),
+                )}
               </ul>
             ))}
           </div>
@@ -202,7 +218,13 @@ type SponsorCardProps = {
 
 /** A sponsor's logo, or their name until a logo is added */
 function SponsorCard({ sponsor, featured = false, hidden = false }: SponsorCardProps) {
-  const className = `home-sponsors__card${featured ? ' home-sponsors__card--featured' : ''}`
+  const className = [
+    'home-sponsors__card',
+    featured && 'home-sponsors__card--featured',
+    sponsor.logo && 'home-sponsors__card--logo',
+  ]
+    .filter(Boolean)
+    .join(' ')
   const content = sponsor.logo ? (
     <img src={sponsor.logo} alt={hidden ? '' : sponsor.name} />
   ) : (
@@ -218,8 +240,12 @@ function SponsorCard({ sponsor, featured = false, hidden = false }: SponsorCardP
       target="_blank"
       rel="noreferrer"
       tabIndex={hidden ? -1 : undefined}
+      aria-label={hidden ? undefined : `${sponsor.name} website (opens in a new tab)`}
     >
       {content}
+      <span className="home-sponsors__external" aria-hidden="true">
+        ↗
+      </span>
     </a>
   )
 }
