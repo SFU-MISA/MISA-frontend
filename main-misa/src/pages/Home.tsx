@@ -118,7 +118,7 @@ export default function Home() {
         <div className="home-byte" ref={byteRef} data-reveal>
           <h2 className="section-title">Meet Byte</h2>
           <p>The official mascot of MISA.</p>
-          <p>Curious. Small. Innovative.</p>
+          <p className="home-byte__tagline">Curious. Small. Innovative.</p>
           <p>
             Byte loves turning big ideas into real projects, proving you don’t
             need a massive footprint to make an impact.
