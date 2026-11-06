@@ -336,6 +336,7 @@
   width: 100%;
   aspect-ratio: 285 / 263;
   object-fit: cover;
+  border-radius: var(--radius-card);
   transition:
     transform var(--duration) var(--ease-out),
     box-shadow var(--duration) var(--ease-out);
