@@ -23,10 +23,8 @@ export default function About() {
       <section className="container page-top">
         <h1 className="section-title" data-reveal>About Us</h1>
         <p className="about-intro" data-reveal>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          A team of 45 innovators, builders, and strategists that work together
+          to turn MISA from a club to a true launchpad.
         </p>
       </section>
 
@@ -38,20 +36,13 @@ export default function About() {
         <article className="about-card">
           <h2 className="section-title">Mission</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            To build a high execution community where ambitious minds turn their
+            ideas into reality.
           </p>
         </article>
         <article className="about-card">
           <h2 className="section-title">Vision</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
+          <p>Help students become the next generation of leaders.</p>
         </article>
       </section>
 

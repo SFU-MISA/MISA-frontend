@@ -50,10 +50,8 @@ export default function Home() {
         <div className="container home-about__text" data-reveal="stagger">
           <h2 className="section-title">About MISA</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Bridging the gap between students and the business technology
+            industry.
           </p>
           <Button to="/about" variant="light" className="home-about__cta">
             Learn More
@@ -119,11 +117,11 @@ export default function Home() {
       <section className="container">
         <div className="home-byte" ref={byteRef} data-reveal>
           <h2 className="section-title">Meet Byte</h2>
+          <p>The official mascot of MISA.</p>
+          <p>Curious. Small. Innovative.</p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Byte loves turning big ideas into real projects, proving you don’t
+            need a massive footprint to make an impact.
           </p>
           <div className="home-byte__art" aria-hidden="true">
             <img className="home-byte__arrow" src={dashedArrow} alt="" />
