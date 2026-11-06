@@ -24,6 +24,8 @@
 
 .photo-wall__tile {
   flex: 0 0 var(--tile-w);
+  width: var(--tile-w);
+  min-width: 0;
   aspect-ratio: 387 / 360;
   object-fit: cover;
   border-radius: clamp(12px, 1.4vw, 20px);

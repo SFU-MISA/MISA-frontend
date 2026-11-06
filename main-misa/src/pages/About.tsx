@@ -17,20 +17,29 @@ const WALL_PHOTOS = Object.values(
   }),
 )
 
+// The strips use small tiles, so list the photos twice to keep each strip
+// wider than the screen while it loops
+const STRIP_PHOTOS = [...WALL_PHOTOS, ...WALL_PHOTOS]
+
 export default function About() {
   return (
     <>
-      <section className="container page-top">
-        <h1 className="section-title" data-reveal>About Us</h1>
-        <p className="about-intro" data-reveal>
-          A team of 45 innovators, builders, and strategists that work together
-          to turn MISA from a club to a true launchpad.
-        </p>
+      {/* Landing: photos / title and intro / photos, all on the first screen */}
+      <section className="about-hero page-top">
+        <div className="about-photos" data-reveal>
+          <PhotoWall photos={STRIP_PHOTOS} direction="left" />
+        </div>
+        <div className="container" data-reveal>
+          <h1 className="section-title">About Us</h1>
+          <p className="about-intro">
+            A team of 45 innovators, builders, and strategists that work
+            together to turn MISA from a club to a true launchpad.
+          </p>
+        </div>
+        <div className="about-photos" data-reveal>
+          <PhotoWall photos={STRIP_PHOTOS} direction="right" />
+        </div>
       </section>
-
-      <div className="about-photos" data-reveal>
-        <PhotoWall photos={WALL_PHOTOS} />
-      </div>
 
       <section className="container about-pillars" data-reveal="stagger">
         <article className="about-card">

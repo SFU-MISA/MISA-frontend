@@ -1,12 +1,45 @@
 /* About page, built from the FINAL "ABOUT" frame. */
 
+.about-hero {
+  /* Exactly one screen tall; the two photo strips share whatever height
+     the title and intro leave over */
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 36px);
+  height: max(100svh, 560px);
+  padding-bottom: clamp(24px, 3vw, 44px);
+}
+
+.about-hero .section-title {
+  margin-bottom: 0.25em;
+}
+
 .about-intro {
   max-width: 1326px;
   margin: 0;
 }
 
 .about-photos {
-  margin-top: clamp(48px, 10vw, 143px);
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.about-photos .photo-wall {
+  height: 100%;
+  grid-template-rows: minmax(0, 1fr);
+}
+
+/* Tiles take the strip's height, and their width follows from the photo shape */
+.about-photos .photo-wall__row {
+  --tile-w: 0px;
+  --tile-gap: clamp(10px, 1.4vw, 20px);
+  height: 100%;
+}
+
+.about-photos .photo-wall__tile {
+  flex: 0 0 auto;
+  width: auto;
+  height: 100%;
 }
 
 /* ---------- Mission / Vision ---------- */
