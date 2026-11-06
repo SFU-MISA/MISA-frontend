@@ -129,7 +129,7 @@
 
 .home-updates__track {
   display: flex;
-  gap: clamp(16px, 4.4vw, 63px);
+  gap: clamp(16px, 2.5vw, 36px);
   margin: 0;
   padding: 8px var(--gutter) 24px;
   list-style: none;
@@ -140,9 +140,9 @@
 }
 
 .home-updates__card {
-  flex: 0 0 clamp(280px, 54vw, 779px);
+  flex: 0 0 clamp(260px, 36vw, 520px);
   scroll-snap-align: start;
-  padding: clamp(20px, 2.3vw, 33px);
+  padding: clamp(16px, 1.6vw, 24px);
   border-radius: var(--radius-card);
   background: var(--color-surface);
   box-shadow: var(--shadow-card);
@@ -161,14 +161,15 @@
 }
 
 .home-updates__card h3 {
-  margin: clamp(16px, 2.6vw, 38px) 0 12px;
-  font-size: var(--text-card-title);
+  margin: clamp(12px, 1.6vw, 22px) 0 8px;
+  font-size: clamp(1.25rem, 2vw, 1.875rem);
   font-weight: 600;
   text-transform: uppercase;
 }
 
 .home-updates__card p {
   margin: 0;
+  font-size: clamp(0.95rem, 1.2vw, 1.125rem);
 }
 
 .home-updates__empty {
@@ -176,7 +177,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  min-height: clamp(280px, 51vw, 733px);
+  min-height: clamp(220px, 34vw, 480px);
   padding: clamp(24px, 3.5vw, 50px);
   padding-bottom: 0;
   border-radius: var(--radius-card);
@@ -196,7 +197,7 @@
 }
 
 .home-updates__empty img {
-  width: clamp(160px, 34vw, 493px);
+  width: clamp(140px, 23vw, 330px);
 }
 
 /* ---------- Meet Byte ---------- */
