@@ -1,8 +1,9 @@
 .exec-grid__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(32px, 6.2vw, 90px) clamp(16px, 2.1vw, 31px);
-  margin: clamp(24px, 4vw, 56px) 0 0;
+  gap: clamp(28px, 4.2vw, 60px) clamp(14px, 1.6vw, 24px);
+  width: 66.667%;
+  margin: clamp(24px, 4vw, 56px) auto 0;
   padding: 0;
   list-style: none;
 }
@@ -28,11 +29,53 @@
   transform: translateY(-6px);
 }
 
+/* Headshots with a LinkedIn link */
+.exec-grid__link {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-card);
+  color: inherit;
+}
+
+.exec-grid__link:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+.exec-grid__badge {
+  position: absolute;
+  right: clamp(8px, 1vw, 14px);
+  bottom: clamp(8px, 1vw, 14px);
+  display: grid;
+  place-items: center;
+  width: clamp(32px, 2.8vw, 40px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  box-shadow: 0 4px 12px rgb(15 26 58 / 0.25);
+  transition:
+    transform var(--duration) var(--ease-out),
+    background-color var(--duration) var(--ease-out);
+}
+
+.exec-grid__badge svg {
+  width: 55%;
+  height: 55%;
+}
+
+/* The badge rides up with the photo on hover */
+.exec-grid__member:hover .exec-grid__badge,
+.exec-grid__link:focus-visible .exec-grid__badge {
+  transform: translateY(-6px);
+  background: var(--color-primary-dark);
+}
+
 .exec-grid__name {
-  margin: clamp(12px, 1.9vw, 28px) 0 0;
+  margin: clamp(10px, 1.3vw, 18px) 0 0;
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: clamp(1.125rem, 2.8vw, 2.5rem);
+  font-size: clamp(1rem, 1.9vw, 1.7rem);
   line-height: 1.1;
   text-transform: uppercase;
 }
@@ -40,12 +83,13 @@
 .exec-grid__role {
   margin: 4px 0 0;
   font-weight: 500;
-  font-size: clamp(0.875rem, 1.9vw, 1.75rem);
+  font-size: clamp(0.8rem, 1.3vw, 1.15rem);
   text-transform: uppercase;
 }
 
 @media (max-width: 640px) {
   .exec-grid__list {
     grid-template-columns: repeat(2, 1fr);
+    width: 100%;
   }
 }
