@@ -121,18 +121,24 @@ export default function PillarStairs({ events, linkedSlugs, restingStep }: Pilla
 
   const top = stepOrigin(events.length - 1)
   const feet = feetPosition(byte.step)
+  const viewTop = top.y - 307
+  const viewRight = top.x + 760
+  const edgeSlope = (2174 - 2360) / (1520 - 669)
 
   return (
     <svg
       ref={svgRef}
       className={`stairs${seen ? ' is-built' : ''}`}
       style={{ '--step-count': events.length } as CSSProperties}
-      viewBox="-10 1190 1530 1180"
+      viewBox={`-10 ${viewTop} ${viewRight + 10} ${2370 - viewTop}`}
       role="group"
       aria-label="Pillar events timeline"
     >
       {/* Floor edge running off to the right */}
-      <path className="stairs__edge" d="M669 2360L1520 2174" />
+      <path
+        className="stairs__edge"
+        d={`M669 2360L${viewRight} ${2360 + edgeSlope * (viewRight - 669)}`}
+      />
 
       <g onPointerLeave={leaveStairs}>
         {/* Invisible ground before the first step, so Byte can be sent back down */}

@@ -19,9 +19,9 @@ function EventCard({ event, action }: { event: PillarEvent; action: 'tickets' | 
           <Button to={TICKETING_PORTAL_URL} className="event-card__cta">
             Buy Ticket
           </Button>
-        ) : (
+        ) : event.date ? (
           <Button
-            to={calendarFileUrl(event)}
+            to={calendarFileUrl({ ...event, date: event.date })}
             download={`${event.slug}.ics`}
             className="event-card__cta"
           >
@@ -32,7 +32,7 @@ function EventCard({ event, action }: { event: PillarEvent; action: 'tickets' | 
             />
             Add to calendar
           </Button>
-        )}
+        ) : null}
       </div>
       {event.image ? (
         <img className="event-card__image" src={event.image} alt="" />

@@ -32,8 +32,9 @@ export default function About() {
         <div className="container" data-reveal>
           <h1 className="section-title">About Us</h1>
           <p className="about-intro">
-            A team of 45 innovators, builders, and strategists that work
-            together to turn MISA from a club to a true launchpad.
+            A team of 50 innovators, builders, and strategists. These are the
+            people working hard behind the scenes to deliver you the best
+            events and projects.
           </p>
         </div>
         <div className="about-photos" data-reveal>
@@ -45,13 +46,17 @@ export default function About() {
         <article className="about-card">
           <h2 className="section-title">Mission</h2>
           <p>
-            To build a high execution community where ambitious minds turn their
-            ideas into reality.
+            Be a space where innovation is possible. We aim to bring students a
+            wide range of real, hands-on experiences that turn their skills into
+            projects in a multidisciplinary setting.
           </p>
         </article>
         <article className="about-card">
           <h2 className="section-title">Vision</h2>
-          <p>Help students become the next generation of leaders.</p>
+          <p>
+            To redefine what student communities can achieve and empower the
+            next generation of leaders and professionals.
+          </p>
         </article>
       </section>
 

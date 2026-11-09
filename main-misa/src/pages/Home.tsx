@@ -49,9 +49,15 @@ export default function Home() {
       <section className="home-about">
         <div className="container home-about__text" data-reveal="stagger">
           <h2 className="section-title">About MISA</h2>
-          <p>
+          <p className="home-about__lead">
             Bridging the gap between students and the business technology
             industry.
+          </p>
+          <p>
+            We are a student led organization, and we’re all about turning talk
+            into action. Whether we’re running events, building tech, or
+            connecting people, we give students a space to roll up their
+            sleeves, build real things and turn their ideas into reality.
           </p>
           <Button to="/about" variant="light" className="home-about__cta">
             Learn More

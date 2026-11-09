@@ -6,8 +6,12 @@ function toDate(date: string, time = '00:00') {
   return new Date(y, m - 1, d, h, min)
 }
 
-/** "Fri Oct 23" */
+/** Shown in place of the date while an event's date is still being decided */
+export const DATE_TBD = 'Coming Soon'
+
+/** "Fri Oct 23", or "Coming Soon" when there's no date yet */
 export function formatShortDate(event: PillarEvent) {
+  if (!event.date) return DATE_TBD
   return toDate(event.date).toLocaleDateString('en-CA', {
     weekday: 'short',
     month: 'short',
@@ -15,29 +19,36 @@ export function formatShortDate(event: PillarEvent) {
   }).replaceAll(',', '')
 }
 
-function formatTime(event: PillarEvent, time: string) {
-  return toDate(event.date, time)
+function formatTime(date: string, time: string) {
+  return toDate(date, time)
     .toLocaleTimeString('en-CA', { hour: 'numeric', minute: '2-digit' })
     .replace(':00', '')
     .replace(/\s?([ap])\.?m\.?/i, (_, ap: string) => `${ap.toUpperCase()}M`)
 }
 
-/** "Fri Oct 23 | 6PM - 8PM" */
+/** "Fri Oct 23 | 6PM - 8PM", or "Coming Soon" when there's no date yet */
 export function formatDateTime(event: PillarEvent) {
-  return `${formatShortDate(event)} | ${formatTime(event, event.startTime)} - ${formatTime(event, event.endTime)}`
+  const { date, startTime, endTime } = event
+  if (!date) return DATE_TBD
+  if (!startTime || !endTime) return formatShortDate(event)
+  return `${formatShortDate(event)} | ${formatTime(date, startTime)} - ${formatTime(date, endTime)}`
 }
 
-/** Splits events into the next one coming up and the ones after it. Past events are dropped. */
+/**
+ * Splits events into the next one coming up and the ones after it. Past events
+ * are dropped; events without a date yet come after the dated ones, in list order.
+ */
 export function splitUpcoming(events: PillarEvent[], now = new Date()) {
-  const later = events
-    .filter((event) => toDate(event.date, event.endTime) >= now)
-    .sort((a, b) => a.date.localeCompare(b.date))
+  const dated = events
+    .filter((event) => event.date && toDate(event.date, event.endTime) >= now)
+    .sort((a, b) => a.date!.localeCompare(b.date!))
+  const later = [...dated, ...events.filter((event) => !event.date)]
   return { upcoming: later[0], future: later.slice(1) }
 }
 
 /** A data: URL for an .ics file, so "Add to calendar" works with any calendar app. */
-export function calendarFileUrl(event: PillarEvent) {
-  const stamp = (time: string) =>
+export function calendarFileUrl(event: PillarEvent & { date: string }) {
+  const stamp = (time = '00:00') =>
     `${event.date.replaceAll('-', '')}T${time.replace(':', '')}00`
   const escape = (text: string) => text.replace(/([,;\\])/g, '\\$1')
   const ics = [

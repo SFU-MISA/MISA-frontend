@@ -19,7 +19,7 @@
   position: relative;
   isolation: isolate;
   margin-top: calc(-1 * clamp(140px, 30vw, 440px));
-  padding-top: clamp(72px, 13vw, 200px);
+  padding-top: clamp(72px, 10vw, 150px);
   color: var(--color-text-on-primary);
 }
 
@@ -50,6 +50,12 @@
   flex: 1 1 320px;
   max-width: 1326px;
   margin: 0;
+}
+
+/* The one-line summary gets its own row above the longer paragraph */
+.home-about__text .home-about__lead {
+  flex-basis: 100%;
+  font-weight: 600;
 }
 
 .home-about__cta {
@@ -338,8 +344,8 @@
 
 .home-events__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(12px, 3.9vw, 56px);
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(12px, 3vw, 44px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -369,6 +375,13 @@
 @media (max-width: 640px) {
   .home-events__grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* An odd tile out sits centred on its own row */
+  .home-events__tile:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - clamp(12px, 3vw, 44px) / 2);
   }
 
   .home-updates__empty {

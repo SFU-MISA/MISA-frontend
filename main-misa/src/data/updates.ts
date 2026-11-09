@@ -9,15 +9,11 @@ export type Update = {
 
 export const UPDATES: Update[] = [
   {
-    title: 'Title',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    title: 'Next Up: MIS Link',
+    body: 'Step out of the lecture hall and into offices of today’s leading firms with MISA’s second event series this year to network with professionals and other students!',
   },
   {
-    title: 'Title',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  },
-  {
-    title: 'Title',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    title: 'New look here at MISA',
+    body: 'Say hello to our brand new website! Following our rebrand this year, we’ve given our digital home a new look so you can check out our latest updates, work, and upcoming events!',
   },
 ]

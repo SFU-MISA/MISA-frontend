@@ -17,7 +17,7 @@ const headshots = import.meta.glob<string>('../assets/photos/headshots/*.jpg', {
 const headshot = (file: string) => headshots[`../assets/photos/headshots/${file}`]
 
 export const EXEC_TEAM: ExecMember[] = [
-  { name: 'Daniel Kim', role: 'President' },
+  { name: 'Daniel Kim', role: 'President', photo: headshot('daniel-kim.jpg') },
   { name: 'Victor Yu', role: 'Co-Vice President', photo: headshot('victor-yu.jpg') },
   { name: 'Cloris Lau', role: 'Co-Vice President', photo: headshot('cloris-lau.jpg') },
   { name: 'Phineas Tran', role: 'Director of Finance', photo: headshot('phineas-tran.jpg') },
