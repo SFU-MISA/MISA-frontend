@@ -224,27 +224,49 @@ function SponsorCard({ sponsor, featured = false, hidden = false }: SponsorCardP
   ]
     .filter(Boolean)
     .join(' ')
-  const content = sponsor.logo ? (
+  const logo = sponsor.logo ? (
     <img src={sponsor.logo} alt={hidden ? '' : sponsor.name} />
   ) : (
     sponsor.name
   )
 
-  if (!sponsor.url) return <div className={className}>{content}</div>
+  if (!sponsor.url) return <div className={className}>{logo}</div>
 
+  const linkProps = {
+    href: sponsor.url,
+    target: '_blank',
+    rel: 'noreferrer',
+    tabIndex: hidden ? -1 : undefined,
+    'aria-label': hidden ? undefined : `${sponsor.name} website (opens in a new tab)`,
+  }
+  const domain = (
+    <span className="home-sponsors__domain" aria-hidden="true">
+      {displayDomain(sponsor.url)}
+      <span className="home-sponsors__arrow">↗</span>
+    </span>
+  )
+
+  // Monetary: the website sits inside the big card as a chip
+  if (featured) {
+    return (
+      <a className={`${className} home-sponsors__card--link`} {...linkProps}>
+        {logo}
+        {domain}
+      </a>
+    )
+  }
+
+  // In-kind: the website is a text link under the logo pill; the pill and
+  // the text are one link, so either opens the site
   return (
-    <a
-      className={`${className} home-sponsors__card--link`}
-      href={sponsor.url}
-      target="_blank"
-      rel="noreferrer"
-      tabIndex={hidden ? -1 : undefined}
-      aria-label={hidden ? undefined : `${sponsor.name} website (opens in a new tab)`}
-    >
-      {content}
-      <span className="home-sponsors__external" aria-hidden="true">
-        ↗
-      </span>
+    <a className="home-sponsors__link" {...linkProps}>
+      <div className={className}>{logo}</div>
+      {domain}
     </a>
   )
+}
+
+/** "https://www.jukeboxprint.com/" -> "jukeboxprint.com" */
+function displayDomain(url: string) {
+  return new URL(url).hostname.replace(/^www\./, '')
 }

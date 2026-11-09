@@ -434,14 +434,20 @@
 }
 
 .home-sponsors__card:hover,
-.home-sponsors__card--link:focus-visible {
+.home-sponsors__card--link:focus-visible,
+.home-sponsors__link:hover .home-sponsors__card,
+.home-sponsors__link:focus-visible .home-sponsors__card {
   transform: translateY(-4px);
   border-color: var(--color-periwinkle);
   box-shadow: var(--shadow);
 }
 
 .home-sponsors__card--featured {
-  height: clamp(110px, 11vw, 160px);
+  /* Logo centred above the website chip */
+  grid-template-rows: 1fr auto;
+  gap: clamp(8px, 1vw, 14px);
+  height: clamp(150px, 14vw, 200px);
+  padding-block: clamp(16px, 1.6vw, 24px);
   border: 0;
   border-radius: var(--radius-card);
   background: var(--color-primary);
@@ -469,29 +475,66 @@
   max-width: 75%;
 }
 
-/* Small "opens a site" badge on linked cards */
-.home-sponsors__external {
-  position: absolute;
-  top: clamp(8px, 0.9vw, 14px);
-  right: clamp(10px, 1.1vw, 16px);
+/* Linked sponsors: the card plus its domain as a text link underneath */
+.home-sponsors__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 0.7vw, 10px);
   color: var(--color-primary);
-  font-family: var(--font-body, inherit);
-  font-size: clamp(0.9rem, 1.1vw, 1.1rem);
-  line-height: 1;
-  opacity: 0.55;
-  transition:
-    transform var(--duration) var(--ease-out),
-    opacity var(--duration) var(--ease-out);
+  text-decoration: none;
 }
 
-.home-sponsors__card--featured:not(.home-sponsors__card--logo) .home-sponsors__external {
-  color: inherit;
+.home-sponsors__link:focus-visible {
+  outline: none;
 }
 
-.home-sponsors__card--link:hover .home-sponsors__external,
-.home-sponsors__card--link:focus-visible .home-sponsors__external {
-  opacity: 1;
+.home-sponsors__domain {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--duration) var(--ease-out);
+}
+
+.home-sponsors__arrow {
+  transition: transform var(--duration) var(--ease-out);
+}
+
+.home-sponsors__link:hover .home-sponsors__domain,
+.home-sponsors__link:focus-visible .home-sponsors__domain {
+  text-decoration-color: currentColor;
+}
+
+.home-sponsors__link:hover .home-sponsors__arrow,
+.home-sponsors__link:focus-visible .home-sponsors__arrow,
+.home-sponsors__card--link:hover .home-sponsors__arrow,
+.home-sponsors__card--link:focus-visible .home-sponsors__arrow {
   transform: translate(2px, -2px);
+}
+
+/* Monetary: the website as a tinted chip inside the card, filling on hover */
+.home-sponsors__card--featured .home-sponsors__domain {
+  padding: 0.45em 1em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 9%, transparent);
+  color: var(--color-primary);
+  font-weight: 600;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out);
+}
+
+.home-sponsors__card--featured:hover .home-sponsors__domain,
+.home-sponsors__card--featured:focus-visible .home-sponsors__domain {
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  text-decoration-color: transparent;
 }
 
 /* Carousel */
@@ -517,6 +560,8 @@
 
 .home-sponsors__list {
   display: flex;
+  /* Pills line up along the top; a linked sponsor's domain hangs below */
+  align-items: flex-start;
   gap: clamp(12px, 1.6vw, 24px);
   margin: 0;
   padding: 0 clamp(6px, 0.8vw, 12px);
