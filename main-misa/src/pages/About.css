@@ -64,6 +64,25 @@
   margin: 0;
 }
 
+/* Mission and Vision sit side by side as smaller cards, stacking on phones */
+.about-pillars {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: clamp(16px, 2.5vw, 36px);
+}
+
+.about-pillars .about-card {
+  padding: clamp(20px, 2.4vw, 36px) clamp(20px, 2.8vw, 40px);
+}
+
+.about-pillars .section-title {
+  font-size: var(--text-subtitle);
+  margin-bottom: 0.3em;
+}
+
+.about-pillars p {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+}
+
 /* ---------- Socials ---------- */
 .about-socials {
   margin-top: clamp(64px, 11.5vw, 165px);
