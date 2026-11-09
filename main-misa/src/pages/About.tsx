@@ -2,7 +2,6 @@ import ExecGrid from '../components/ExecGrid.tsx'
 import Button from '../components/ui/Button.tsx'
 import PhotoWall from '../components/ui/PhotoWall.tsx'
 import { OPENINGS } from '../data/openings.ts'
-import { SOCIAL_POSTS } from '../data/socialPosts.ts'
 import { INSTAGRAM_URL, LINKEDIN_URL, NEWSLETTER_URL } from '../config/links.ts'
 import instagramIcon from '../assets/instagram.svg?raw'
 import linkedinIcon from '../assets/linkedin.svg?raw'
@@ -78,15 +77,6 @@ export default function About() {
             </a>
           </div>
         </div>
-        <ul className="about-socials__grid" data-reveal="stagger">
-          {SOCIAL_POSTS.map((post, i) => (
-            <li key={i}>
-              <a className="about-socials__tile" href={post.url}>
-                <img src={post.image} alt={post.alt} />
-              </a>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <ExecGrid />
