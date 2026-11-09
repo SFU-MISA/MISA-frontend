@@ -83,44 +83,51 @@
   font-size: clamp(1rem, 1.3vw, 1.2rem);
 }
 
-/* ---------- Socials ---------- */
+/* ---------- Socials: a brand-blue banner card ---------- */
 .about-socials {
-  margin-top: clamp(48px, 7vw, 100px);
+  margin-top: clamp(48px, 6vw, 88px);
 }
 
-.about-socials__title {
-  color: var(--color-primary);
-}
-
-/* Title on the left, social links on the right; stacks on narrow screens */
 .about-socials__header {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 16px 24px;
+  gap: 20px 32px;
+  padding: clamp(28px, 3.3vw, 48px) clamp(24px, 4.2vw, 60px);
+  border-radius: var(--radius-card);
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  box-shadow: var(--shadow-card);
 }
 
-.about-socials__header .section-title {
+.about-socials__title {
   margin: 0;
   font-size: var(--text-subtitle);
 }
 
+.about-socials__text p {
+  margin: 0.4em 0 0;
+  opacity: 0.85;
+}
+
 .about-socials__links {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
 }
 
+/* White buttons on the blue card */
 .about-socials__icon,
 .about-socials__newsletter {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 44px;
+  height: 48px;
   border-radius: 999px;
-  background: var(--color-primary);
-  color: var(--color-text-on-primary);
+  background: var(--color-text-on-primary);
+  color: var(--color-primary);
   text-decoration: none;
   transition:
     background-color var(--duration) var(--ease-out),
@@ -129,12 +136,12 @@
 }
 
 .about-socials__icon {
-  width: 44px;
+  width: 48px;
 }
 
 .about-socials__newsletter {
   gap: 10px;
-  padding: 0 18px 0 14px;
+  padding: 0 20px 0 16px;
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 0.95rem;
@@ -147,22 +154,28 @@
 
 .about-socials__icon svg,
 .about-socials__newsletter svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .about-socials__icon:hover,
 .about-socials__icon:focus-visible,
 .about-socials__newsletter:hover,
 .about-socials__newsletter:focus-visible {
-  background: var(--color-primary-dark);
+  background: var(--color-lavender);
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgb(15 26 58 / 0.25);
+  box-shadow: 0 8px 20px rgb(15 26 58 / 0.3);
+}
+
+.about-socials__icon:focus-visible,
+.about-socials__newsletter:focus-visible {
+  outline: 3px solid var(--color-text-on-primary);
+  outline-offset: 3px;
 }
 
 /* ---------- Exec team ---------- */
 .exec-grid {
-  margin-top: clamp(64px, 7.8vw, 112px);
+  margin-top: clamp(56px, 7vw, 100px);
 }
 
 /* ---------- Join our team ---------- */

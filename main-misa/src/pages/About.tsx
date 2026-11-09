@@ -61,9 +61,12 @@ export default function About() {
 
       <section className="container about-socials">
         <div className="about-socials__header" data-reveal>
-          <h2 className="section-title about-socials__title">
-            Connect on our socials
-          </h2>
+          <div className="about-socials__text">
+            <h2 className="section-title about-socials__title">
+              Connect on our socials
+            </h2>
+            <p>Stay in the loop on upcoming events, recaps and opportunities.</p>
+          </div>
           <div className="about-socials__links">
             <a className="about-socials__icon" href={INSTAGRAM_URL} aria-label="Instagram">
               <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: instagramIcon }} />

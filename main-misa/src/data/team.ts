@@ -44,6 +44,18 @@ export const EXEC_TEAM: ExecMember[] = [
     linkedin: 'https://www.linkedin.com/in/phineastran/',
   },
   {
+    name: 'Daniel Shi',
+    role: 'Director of Web Development',
+    photo: headshot('daniel-shi.jpg'),
+    linkedin: 'https://www.linkedin.com/in/danielshi101',
+  },
+  {
+    name: 'Esther Cho',
+    role: 'Director of Software Systems',
+    photo: headshot('esther-cho.jpg'),
+    linkedin: 'https://www.linkedin.com/in/esthercho04/',
+  },
+  {
     name: 'Shannon Tang',
     role: 'Director of Project Management',
     photo: headshot('shannon-tang.jpg'),
@@ -73,18 +85,7 @@ export const EXEC_TEAM: ExecMember[] = [
     photo: headshot('areeba-ali.jpg'),
     linkedin: 'https://www.linkedin.com/in/ali-areeba/',
   },
-  {
-    name: 'Daniel Shi',
-    role: 'Director of Web Development',
-    photo: headshot('daniel-shi.jpg'),
-    linkedin: 'https://www.linkedin.com/in/danielshi101',
-  },
-  {
-    name: 'Esther Cho',
-    role: 'Director of Software Systems',
-    photo: headshot('esther-cho.jpg'),
-    linkedin: 'https://www.linkedin.com/in/esthercho04/',
-  },
+  
   {
     name: 'Tiensa Tran',
     role: 'Director of Marketing',
