@@ -142,11 +142,14 @@ export default function Home() {
           <ul className="home-events__grid" data-reveal="stagger">
             {EVENTS_PREVIEW.map((event) => (
               <li key={event.name} className="home-events__tile">
-                {event.image ? (
-                  <img src={event.image} alt={event.name} />
-                ) : (
-                  <div className="placeholder">{event.name}</div>
-                )}
+                <figure>
+                  {event.image ? (
+                    <img className="home-events__photo" src={event.image} alt="" />
+                  ) : (
+                    <div className="home-events__photo placeholder" />
+                  )}
+                  <figcaption className="home-events__caption">{event.name}</figcaption>
+                </figure>
               </li>
             ))}
           </ul>

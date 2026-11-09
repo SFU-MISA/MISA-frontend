@@ -351,7 +351,12 @@
   list-style: none;
 }
 
-.home-events__tile > * {
+.home-events__tile figure {
+  margin: 0;
+}
+
+.home-events__photo {
+  display: block;
   width: 100%;
   aspect-ratio: 285 / 263;
   object-fit: cover;
@@ -361,9 +366,23 @@
     box-shadow var(--duration) var(--ease-out);
 }
 
-.home-events__tile:hover > * {
+.home-events__tile:hover .home-events__photo {
   transform: translateY(-6px);
   box-shadow: var(--shadow);
+}
+
+/* Which event each photo is from */
+.home-events__caption {
+  margin-top: clamp(10px, 1.1vw, 16px);
+  font-family: var(--font-heading);
+  font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+  font-weight: 600;
+  text-align: center;
+  transition: color var(--duration) var(--ease-out);
+}
+
+.home-events__tile:hover .home-events__caption {
+  color: var(--color-primary);
 }
 
 .home-events__cta {
