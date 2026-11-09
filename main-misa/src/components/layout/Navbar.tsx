@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router'
-import { NAV_LINKS } from '../../config/links.ts'
+import { NAV_LINKS, TICKETING_PORTAL_URL } from '../../config/links.ts'
 import logo from '../../assets/logo-blue.svg'
 import './Navbar.css'
 
@@ -15,6 +15,11 @@ export default function Navbar() {
         <Link to="/" className="navbar__brand" onClick={closeMenu}>
           <img src={logo} alt="MISA home" />
         </Link>
+
+        {/* Ticketing portal: always visible, even with the mobile menu closed */}
+        <a className="navbar__cta" href={TICKETING_PORTAL_URL} onClick={closeMenu}>
+          Get Tickets
+        </a>
 
         <button
           type="button"

@@ -1,7 +1,7 @@
-// External URLs used across the site. The portal URL can be overridden per
-// environment with VITE_TICKETING_PORTAL_URL (e.g. in .env.local).
-export const TICKETING_PORTAL_URL =
-  import.meta.env.VITE_TICKETING_PORTAL_URL ?? 'https://portal.sfumisa.ca'
+// External URLs used across the site.
+
+// Ticketing portal: our Stripe checkout, starting from its event list
+export const TICKETING_PORTAL_URL = 'https://portal.misasfu.com'
 
 // Matches the FINAL Figma frames: the nav shows About + Events, and the
 // footer also links to Team.

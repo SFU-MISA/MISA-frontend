@@ -57,9 +57,45 @@
 }
 
 .navbar__links {
+  order: 1;
   display: flex;
   align-items: center;
   gap: 40px;
+  margin-left: auto;
+}
+
+.navbar__cta {
+  order: 2;
+  display: inline-flex;
+  align-items: center;
+  height: clamp(36px, 3vw, 44px);
+  margin-left: clamp(20px, 2.5vw, 36px);
+  padding: 0 clamp(16px, 1.5vw, 22px);
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgb(15 26 58 / 0.18);
+  transition:
+    background-color var(--duration) var(--ease-out),
+    transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.navbar__cta:hover,
+.navbar__cta:focus-visible {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgb(15 26 58 / 0.25);
+}
+
+.navbar__cta:focus-visible {
+  outline: 3px solid var(--color-periwinkle);
+  outline-offset: 3px;
 }
 
 .navbar__links a {
@@ -101,6 +137,7 @@
 }
 
 .navbar__toggle {
+  order: 3;
   display: none;
   flex-direction: column;
   gap: 5px;
@@ -120,9 +157,17 @@
 @media (max-width: 640px) {
   .navbar__toggle {
     display: flex;
+    margin-left: 4px;
+  }
+
+  /* Phones: logo, tickets button, menu toggle; the links drop below */
+  .navbar__cta {
+    margin-left: auto;
   }
 
   .navbar__links {
+    order: 4;
+    margin-left: 0;
     display: none;
     flex-basis: 100%;
     flex-direction: column;
