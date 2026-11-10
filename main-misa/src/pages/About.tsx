@@ -6,6 +6,7 @@ import { INSTAGRAM_URL, LINKEDIN_URL, NEWSLETTER_URL } from '../config/links.ts'
 import instagramIcon from '../assets/instagram.svg?raw'
 import linkedinIcon from '../assets/linkedin.svg?raw'
 import mailIcon from '../assets/mail.svg?raw'
+import Seo from '../components/Seo.tsx'
 import './About.css'
 
 // Every photo in assets/photos/wall, in filename order
@@ -23,6 +24,11 @@ const STRIP_PHOTOS = [...WALL_PHOTOS, ...WALL_PHOTOS]
 export default function About() {
   return (
     <>
+      <Seo
+        title="About Us · MISA SFU"
+        description="Meet MISA, a team of 50 SFU students building events and projects that connect students with the business technology industry."
+        path="/about"
+      />
       {/* Landing: photos / title and intro / photos, all on the first screen */}
       <section className="about-hero page-top">
         <div className="about-photos" data-reveal>
