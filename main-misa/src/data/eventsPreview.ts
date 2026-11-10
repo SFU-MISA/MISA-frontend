@@ -1,7 +1,6 @@
 import connectPhoto from '../assets/photos/mis-connect/thumbs-up.jpg'
 import linkPhoto from '../assets/photos/mis-link/office-tour.jpg'
 import breakthroughPhoto from '../assets/photos/mis-breakthrough/winners.jpg'
-import bootcampPhoto from '../assets/photos/mis-bootcamp/conversation.jpg'
 import pmbcPhoto from '../assets/photos/mis-pmbc/pmbc.jpg'
 
 // The tiles in the Home page "Our Events" strip, one per pillar event.
@@ -16,5 +15,4 @@ export const EVENTS_PREVIEW: EventPreview[] = [
   { name: 'MIS Link', image: linkPhoto },
   { name: 'MIS PMBC', image: pmbcPhoto },
   { name: 'MIS Breakthrough', image: breakthroughPhoto },
-  { name: 'MIS Bootcamp', image: bootcampPhoto },
 ]

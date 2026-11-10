@@ -1,7 +1,6 @@
 import connectPhoto from '../assets/photos/mis-connect/panel.jpg'
 import linkPhoto from '../assets/photos/mis-link/networking.jpg'
 import breakthroughPhoto from '../assets/photos/mis-breakthrough/presenting.jpg'
-import bootcampPhoto from '../assets/photos/mis-bootcamp/teamwork.jpg'
 import pmbcPhoto from '../assets/photos/mis-pmbc/pmbc.jpg'
 
 // The pillar events, in the order they climb the Events page staircase.
@@ -23,9 +22,6 @@ export type PillarEvent = {
   image?: string
 }
 
-const DESCRIPTION =
-  'Connect with industry professionals, gain real-world perspectives, and discover the many career opportunities within the field of MIS, including business analytics, tech consulting, and project/product management.'
-
 export const PILLAR_EVENTS: PillarEvent[] = [
   {
     slug: 'mis-connect',
@@ -34,7 +30,8 @@ export const PILLAR_EVENTS: PillarEvent[] = [
     startTime: '18:00',
     endTime: '20:00',
     location: 'SFU Burnaby',
-    description: DESCRIPTION,
+    description:
+      'Connect with industry professionals, gain real-world perspectives, and discover the many career opportunities within the field of MIS, including business analytics, tech consulting, and project/product management.',
     image: connectPhoto,
   },
   {
@@ -63,12 +60,5 @@ export const PILLAR_EVENTS: PillarEvent[] = [
     description:
       'A high momentum hackathon sprint, where developers, designers and strategists come together to build real tech under pressure and ship a real product solution alongside peers and mentors.',
     image: breakthroughPhoto,
-  },
-  {
-    slug: 'mis-bootcamp',
-    name: 'MIS Bootcamp',
-    location: 'TBD',
-    description: DESCRIPTION,
-    image: bootcampPhoto,
   },
 ]

@@ -174,7 +174,7 @@
 
 .home-updates__image {
   width: 100%;
-  aspect-ratio: 709 / 299;
+  aspect-ratio: 733 / 352;
   object-fit: cover;
   border-radius: clamp(12px, 1.4vw, 20px);
 }
@@ -344,7 +344,7 @@
 
 .home-events__grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: clamp(12px, 3vw, 44px);
   margin: 0;
   padding: 0;
