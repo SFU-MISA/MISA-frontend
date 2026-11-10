@@ -21,6 +21,7 @@ import byteHead from '../assets/byte-head.svg?raw'
 import byteLaptop from '../assets/byte-laptop.svg?raw'
 import byteMegaphone from '../assets/byte-megaphone.svg'
 import dashedArrow from '../assets/dashed-arrow.svg'
+import Seo from '../components/Seo.tsx'
 import './Home.css'
 
 // Figma layer names of Byte's eyes. Only the front-facing Byte follows the
@@ -42,6 +43,11 @@ export default function Home() {
 
   return (
     <>
+      <Seo
+        title="MISA · SFU Management Information Systems Association"
+        description="MISA is SFU's Management Information Systems Association, a student-led club bridging the gap between students and the business technology industry through events, projects and connections."
+        path="/"
+      />
       <section className="home-hero" aria-label="Hero">
         <img className="hero-image" src={heroPhoto} alt="Students listening to the panel at MIS Connect" />
       </section>

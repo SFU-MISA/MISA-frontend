@@ -6,6 +6,7 @@ import { calendarFileUrl, formatDateTime, splitUpcoming } from '../utils/eventDa
 import calendarIcon from '../assets/calendar-add.svg?raw'
 // Placeholder until a proper hero shot is picked
 import heroPhoto from '../assets/photos/hero/events.jpg'
+import Seo from '../components/Seo.tsx'
 import './Events.css'
 
 function EventCard({ event, action }: { event: PillarEvent; action: 'tickets' | 'calendar' }) {
@@ -51,6 +52,11 @@ export default function Events() {
 
   return (
     <>
+      <Seo
+        title="Events · MISA SFU"
+        description="Upcoming and past MISA events at SFU, including MIS Connect. Get tickets and add events to your calendar."
+        path="/events"
+      />
       <section className="events-hero" aria-label="Hero">
         <img className="hero-image" src={heroPhoto} alt="The speaker panel at MIS Connect" />
       </section>
