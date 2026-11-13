@@ -1,7 +1,7 @@
 // External URLs used across the site.
 
 // Ticketing portal: our Stripe checkout, starting from its event list
-export const TICKETING_PORTAL_URL = 'https://portal.misasfu.com'
+export const TICKETING_PORTAL_URL = 'https://portal.misasfu.com/?v=2'
 
 // Matches the FINAL Figma frames: the nav shows About + Events, and the
 // footer also links to Team.
