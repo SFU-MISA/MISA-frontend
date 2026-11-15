@@ -23,7 +23,15 @@ export default function Seo({ title, description, path }: SeoProps) {
     setAttr('meta[property="og:title"]', 'content', title)
     setAttr('meta[property="og:description"]', 'content', description)
     setAttr('meta[property="og:url"]', 'content', url)
-    setAttr('link[rel="canonical"]', 'href', url)
+
+    //lets google know the location of a page ie im /about...
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.rel = 'canonical'
+      document.head.appendChild(canonical)
+    }
+    canonical.href = url
   }, [title, description, path])
 
   return null
