@@ -44,7 +44,7 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="MISA · SFU Management Information Systems Association"
+        title="SFU MISA · Management Information Systems Association"
         description="MISA is SFU's Management Information Systems Association, a student-led club bridging the gap between students and the business technology industry through events, projects and connections."
         path="/"
       />
